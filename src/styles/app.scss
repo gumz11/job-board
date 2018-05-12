@@ -1,0 +1,117 @@
+$main-color: #f5d02a;
+$off-color: #353223;
+$media-lg: 992px;
+$media-md: 768px;
+
+html, body {
+    height: 100%;
+    background-color: $off-color;
+}
+
+h1, h2, h3, h4, h5, p {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.jb-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.jb-center {
+    text-align: center;
+    margin: auto;
+}
+
+.jb-fill {
+    height: 100%;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: $main-color;
+    color: $off-color;
+    
+    .jb-logo {
+        padding: 10px;
+        .fa-5x {
+            font-size: 3em;
+        }
+
+        .jb-title {
+            flex: 1;
+            padding: 5px;
+        }
+        
+        .jb-btn {
+            flex: 0 0 50px;
+            border-radius: 4px;
+            border: 1px solid $off-color;
+            background: none;
+        }
+    }
+
+    .jb-nav {
+        display: none;
+        ul {
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+            -webkit-padding-start: 0;
+            li {
+                transition: margin-top 200ms ease;
+                margin-top: -50px;
+                flex: 0 0 100%;
+                padding: 20px;
+                list-style: none;
+                text-align: center;
+                border-radius: 4px;
+                border: 1px solid $off-color;
+            }
+        }
+    }
+
+    .jb-nav-visible {
+        display: block;
+        ul li {
+            margin-top: 0;
+        }
+    }
+}
+
+main {
+    .jb-background {
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    .jb-banner {
+        background-color: $main-color;
+        padding: 25px;
+        color: $off-color;
+    }
+    section.jb-main {
+        flex: 1;
+        // padding: 10px;
+    }
+    aside.jb-sidebar {
+        display: none;
+        // padding: 10px;
+        // flex: 0 0 300px;
+    }
+}
+
+footer {
+    color: white;
+}
+
+@media (min-width: $media-md) {
+    // .jb-header .jb-logo .fa-5x {
+    //     font-size: 5em;
+    // }
+}
+@media (min-width: $media-lg) {
+    
+}
+  

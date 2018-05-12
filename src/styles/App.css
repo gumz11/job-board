@@ -1,0 +1,74 @@
+html, body {
+  height: 100%;
+  background-color: #353223; }
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.jb-row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.jb-center {
+  text-align: center;
+  margin: auto; }
+
+.jb-fill {
+  height: 100%; }
+
+header {
+  position: fixed;
+  width: 100%;
+  background-color: #f5d02a;
+  color: #353223; }
+  header .jb-logo {
+    padding: 10px; }
+    header .jb-logo .fa-5x {
+      font-size: 3em; }
+    header .jb-logo .jb-title {
+      flex: 1;
+      padding: 5px; }
+    header .jb-logo .jb-btn {
+      flex: 0 0 50px;
+      border-radius: 4px;
+      border: 1px solid #353223;
+      background: none; }
+  header .jb-nav {
+    display: none; }
+    header .jb-nav ul {
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-padding-start: 0; }
+      header .jb-nav ul li {
+        transition: margin-top 200ms ease;
+        margin-top: -50px;
+        flex: 0 0 100%;
+        padding: 20px;
+        list-style: none;
+        text-align: center;
+        border-radius: 4px;
+        border: 1px solid #353223; }
+  header .jb-nav-visible {
+    display: block; }
+    header .jb-nav-visible ul li {
+      margin-top: 0; }
+
+main .jb-background {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; }
+main .jb-banner {
+  background-color: #f5d02a;
+  padding: 25px;
+  color: #353223; }
+main section.jb-main {
+  flex: 1; }
+main aside.jb-sidebar {
+  display: none; }
+
+footer {
+  color: white; }
+
+/*# sourceMappingURL=app.css.map */
