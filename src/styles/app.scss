@@ -14,9 +14,23 @@ h1, h2, h3, h4, h5, p {
     font-family: sans-serif;
 }
 
+.jb-hidden {
+    display: none;
+}
+
+.jb-fixed {
+    position: fixed;
+}
+
 .jb-row {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.jb-column {
+    display: flex;
+    flex-direction: column;
 }
 
 .jb-center {
@@ -26,10 +40,18 @@ h1, h2, h3, h4, h5, p {
 
 .jb-fill {
     height: 100%;
+    flex: 1;
+}
+
+.jb-btn {
+    background-color: $main-color;
+    border-radius: 4px;
+    border: 2px solid $off-color;
+    padding: 10px;
 }
 
 header {
-    position: fixed;
+    top: 0;
     width: 100%;
     background-color: $main-color;
     color: $off-color;
@@ -41,15 +63,16 @@ header {
         }
 
         .jb-title {
-            flex: 1;
+            flex: 2;
             padding: 5px;
+        }
+        
+        .jb-search {
+            flex: 0 0 50px;
         }
         
         .jb-btn {
             flex: 0 0 50px;
-            border-radius: 4px;
-            border: 1px solid $off-color;
-            background: none;
         }
     }
 
@@ -60,14 +83,15 @@ header {
             -webkit-margin-after: 0;
             -webkit-padding-start: 0;
             li {
-                transition: margin-top 200ms ease;
+                transition: all 200ms ease-in;
                 margin-top: -50px;
                 flex: 0 0 100%;
                 padding: 20px;
                 list-style: none;
                 text-align: center;
-                border-radius: 4px;
-                border: 1px solid $off-color;
+                &:first-child {
+                    border-bottom: none;
+                }
             }
         }
     }
@@ -81,6 +105,8 @@ header {
 }
 
 main {
+    color: $off-color;
+
     .jb-background {
         background-size: cover;
         background-position: center;
@@ -91,14 +117,37 @@ main {
         padding: 25px;
         color: $off-color;
     }
-    section.jb-main {
-        flex: 1;
-        // padding: 10px;
-    }
+    // section.jb-main {
+    //     padding: 10px;
+    // }
     aside.jb-sidebar {
         display: none;
         // padding: 10px;
         // flex: 0 0 300px;
+    }
+
+    .jb-form {
+        display: none;
+        // padding: 5px;
+        // text-align: right;
+        // span {
+        //     max-width: 50%;
+        //     &::before {
+        //         display: inline-block;
+        //         font-style: normal;
+        //         font-variant: normal;
+        //         text-rendering: auto;
+        //         -webkit-font-smoothing: antialiased;
+        //         font-family: "Font Awesome 5 Free"; 
+        //         font-weight: 900; 
+        //         content: "\f002";
+        //         color: black;
+        //     }
+        // }
+    }
+
+    .jb-control {
+
     }
 }
 
