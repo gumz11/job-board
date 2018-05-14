@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Header from './Header';
 import HomeBanner from './HomeBanner';
 import HomeFill from './HomeFill';
 import Footer from './Footer';
@@ -8,14 +10,11 @@ import screen3 from '../images/screen3.jpg';
 import screen4 from '../images/screen4.jpg';
 
 class Home extends React.Component {
-    componentDidMount = () => {
-        let fillScreens = document.querySelectorAll('.jb-background');
-        fillScreens.forEach(s => s.style.height = window.innerHeight+'px');
-    }
 
     render() {
         return (
             <React.Fragment>
+                <Header type='fixed' onSearch={this.props.onSearch} />
                 <main>
                     <HomeFill screen={screen4} />
                     <HomeBanner>

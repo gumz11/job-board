@@ -8,7 +8,7 @@ html, body {
     background-color: $off-color;
 }
 
-h1, h2, h3, h4, h5, p {
+h1, h2, h3, h4, h5, p, a {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -25,7 +25,6 @@ h1, h2, h3, h4, h5, p {
 .jb-row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
 }
 
 .jb-column {
@@ -44,6 +43,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 .jb-btn {
+    color: $off-color;
     background-color: $main-color;
     border-radius: 4px;
     border: 2px solid $off-color;
@@ -58,6 +58,7 @@ header {
     
     .jb-logo {
         padding: 10px;
+        align-items: center;
         .fa-5x {
             font-size: 3em;
         }
@@ -105,7 +106,7 @@ header {
 }
 
 main {
-    color: $off-color;
+    color: white;
 
     .jb-background {
         background-size: cover;
@@ -117,9 +118,7 @@ main {
         padding: 25px;
         color: $off-color;
     }
-    // section.jb-main {
-    //     padding: 10px;
-    // }
+    
     aside.jb-sidebar {
         display: none;
         // padding: 10px;
@@ -146,9 +145,23 @@ main {
         // }
     }
 
-    .jb-control {
+    #map {
+        
+        > .jb-control {
+            display: none;
+        }
 
+        .leaflet-popup-content p {
+            margin: 0;
+        }
     }
+
+    
+
+    section.jb-main {
+        padding: 10px;
+    }
+
 }
 
 footer {
@@ -156,9 +169,7 @@ footer {
 }
 
 @media (min-width: $media-md) {
-    // .jb-header .jb-logo .fa-5x {
-    //     font-size: 5em;
-    // }
+    
 }
 @media (min-width: $media-lg) {
     

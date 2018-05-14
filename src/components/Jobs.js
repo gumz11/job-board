@@ -1,15 +1,34 @@
 import React from 'react';
 
-import JobsMain from './JobsMain';
+import Header from './Header';
+import JobsForm from './JobsForm';
+import JobsMap from './JobsMap';
 import JobsSidebar from './JobsSidebar';
 
-const Jobs = () => {
-    return (
-        <main className="jb-fill jb-row">
-            <JobsMain />
-            <JobsSidebar />
-        </main>
-    );
+class Jobs extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { header: 'hidden' };
+    }
+    controlHeader = () => {
+        this.setState(prevState => ({
+            header: prevState.header ? '' : 'hidden'
+        }));
+    }
+    render() {
+        return (
+            <React.Fragment>
+                <Header type={this.state.header} onSearch={this.props.onSearch} />
+                <main className="jb-fill jb-row">
+                    <section className="jb-fill jb-column">
+                        <JobsForm />
+                        <JobsMap jobs={this.props.jobs} controlHeader={this.controlHeader}/>
+                    </section>
+                    <JobsSidebar />
+                </main>
+            </React.Fragment>
+        );
+    }
 }
 
 export default Jobs;
