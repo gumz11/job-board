@@ -1,17 +1,26 @@
 $main-color: #f5d02a;
 $off-color: #353223;
+$white-color: #cab248;
 $media-lg: 992px;
 $media-md: 768px;
 
 html, body {
     height: 100%;
+    font-family: 'Open Sans', sans-serif;
     background-color: $off-color;
+    color: $white-color;
 }
 
 h1, h2, h3, h4, h5, p, a {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: $white-color;
+    transition: color 0.2s ease-out;
 }
 
 .jb-hidden {
@@ -42,6 +51,10 @@ h1, h2, h3, h4, h5, p, a {
     flex: 1;
 }
 
+.jb-content {
+    max-width: 1000px;
+}
+
 .jb-btn {
     color: $off-color;
     background-color: $main-color;
@@ -64,7 +77,7 @@ header {
         }
 
         .jb-title {
-            flex: 2;
+            flex: 1;
             padding: 5px;
         }
         
@@ -79,44 +92,50 @@ header {
 
     .jb-nav {
         display: none;
-        ul {
-            -webkit-margin-before: 0;
-            -webkit-margin-after: 0;
-            -webkit-padding-start: 0;
-            li {
-                transition: all 200ms ease-in;
-                margin-top: -50px;
-                flex: 0 0 100%;
-                padding: 20px;
-                list-style: none;
-                text-align: center;
-                &:first-child {
-                    border-bottom: none;
-                }
+        
+        a {
+            flex: 0 0 100%;
+            font-size: 1.5em;
+            margin-top: -50px;
+            display: list-item;
+            text-align: center;
+            &:hover {
+                color: #756c45;
+            }    
+            &:first-of-type {
+                border-bottom: none;
             }
         }
     }
 
     .jb-nav-visible {
         display: block;
-        ul li {
+        a {
             margin-top: 0;
         }
     }
 }
 
 main {
-    color: white;
 
     .jb-background {
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
     }
+
     .jb-banner {
-        background-color: $main-color;
+        // background-color: $main-color;
         padding: 25px;
-        color: $off-color;
+        // color: $off-color;
+    }
+
+    .jb-icon {
+        padding: 15px;
+        max-width: 300px;
+        h4 {
+            padding: 10px;
+        }
     }
     
     aside.jb-sidebar {
@@ -156,8 +175,6 @@ main {
         }
     }
 
-    
-
     section.jb-main {
         padding: 10px;
     }
@@ -165,7 +182,15 @@ main {
 }
 
 footer {
-    color: white;
+    padding: 50px 0;
+    width: 100%;
+    div {
+        flex: 1;
+    }
+    a {
+        padding: 5px;
+    }
+
 }
 
 @media (min-width: $media-md) {

@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.nav = React.createRef();
+        this.state = { navVisible: '' };
     }
     handleClick = () => {
-        this.nav.current.classList.toggle('jb-nav-visible');
+        this.setState((prevState) => ({
+            navVisible: prevState.navVisible ? '' : 'jb-nav-visible'
+        }));
     }
     render() {
         return (
@@ -20,11 +22,9 @@ class Header extends React.Component {
                     </form>
                     <button onClick={this.handleClick} className="jb-btn"><i className="fas fa-bars fa-2x"></i></button>
                 </div>
-                <nav ref={this.nav} className="jb-nav jb-row">
-                    <ul>
-                        <li className="jb-btn"><Link to="/">Home</Link></li>
-                        <li className="jb-btn"><Link to="/jobs">Jobs</Link></li>
-                    </ul>
+                <nav className={`jb-nav jb-row ${this.state.navVisible}`}>
+                    <Link to="/" className="jb-btn">Home</Link>
+                    <Link to="/jobs" className="jb-btn">Jobs</Link>
                 </nav>
             </header>
         );

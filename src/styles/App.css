@@ -1,11 +1,18 @@
 html, body {
   height: 100%;
-  background-color: #353223; }
+  font-family: 'Open Sans', sans-serif;
+  background-color: #353223;
+  color: #cab248; }
 
 h1, h2, h3, h4, h5, p, a {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif; }
+  padding: 0; }
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #cab248;
+  transition: color 0.2s ease-out; }
 
 .jb-hidden {
   display: none; }
@@ -29,6 +36,9 @@ h1, h2, h3, h4, h5, p, a {
   height: 100%;
   flex: 1; }
 
+.jb-content {
+  max-width: 1000px; }
+
 .jb-btn {
   color: #353223;
   background-color: #f5d02a;
@@ -47,7 +57,7 @@ header {
     header .jb-logo .fa-5x {
       font-size: 3em; }
     header .jb-logo .jb-title {
-      flex: 2;
+      flex: 1;
       padding: 5px; }
     header .jb-logo .jb-search {
       flex: 0 0 50px; }
@@ -55,46 +65,49 @@ header {
       flex: 0 0 50px; }
   header .jb-nav {
     display: none; }
-    header .jb-nav ul {
-      -webkit-margin-before: 0;
-      -webkit-margin-after: 0;
-      -webkit-padding-start: 0; }
-      header .jb-nav ul li {
-        transition: all 200ms ease-in;
-        margin-top: -50px;
-        flex: 0 0 100%;
-        padding: 20px;
-        list-style: none;
-        text-align: center; }
-        header .jb-nav ul li:first-child {
-          border-bottom: none; }
+    header .jb-nav a {
+      flex: 0 0 100%;
+      font-size: 1.5em;
+      margin-top: -50px;
+      display: list-item;
+      text-align: center; }
+      header .jb-nav a:hover {
+        color: #756c45; }
+      header .jb-nav a:first-of-type {
+        border-bottom: none; }
   header .jb-nav-visible {
     display: block; }
-    header .jb-nav-visible ul li {
+    header .jb-nav-visible a {
       margin-top: 0; }
 
-main {
-  color: white; }
-  main .jb-background {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; }
-  main .jb-banner {
-    background-color: #f5d02a;
-    padding: 25px;
-    color: #353223; }
-  main aside.jb-sidebar {
-    display: none; }
-  main .jb-form {
-    display: none; }
-  main #map > .jb-control {
-    display: none; }
-  main #map .leaflet-popup-content p {
-    margin: 0; }
-  main section.jb-main {
+main .jb-background {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; }
+main .jb-banner {
+  padding: 25px; }
+main .jb-icon {
+  padding: 15px;
+  max-width: 300px; }
+  main .jb-icon h4 {
     padding: 10px; }
+main aside.jb-sidebar {
+  display: none; }
+main .jb-form {
+  display: none; }
+main #map > .jb-control {
+  display: none; }
+main #map .leaflet-popup-content p {
+  margin: 0; }
+main section.jb-main {
+  padding: 10px; }
 
 footer {
-  color: white; }
+  padding: 50px 0;
+  width: 100%; }
+  footer div {
+    flex: 1; }
+  footer a {
+    padding: 5px; }
 
 /*# sourceMappingURL=app.css.map */
