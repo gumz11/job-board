@@ -27,9 +27,9 @@ class Home extends React.Component {
                     </HomeBanner>
                     <HomeFill screen={screen2} />
                     <HomeBanner>
-                        <HomeIcon type="user-tie"> Here are some cool icons to tell you more. </HomeIcon>
+                        <HomeIcon type="briefcase"> Here are some cool icons to tell you more. </HomeIcon>
                         <HomeIcon type="address-card"> Here are some cool icons to tell you more. </HomeIcon>
-                        <HomeIcon type="stopwatch"> Here are some cool icons to tell you more. </HomeIcon>
+                        <HomeIcon type="clock-o"> Here are some cool icons to tell you more. </HomeIcon>
                     </HomeBanner>
                     <HomeFill screen={screen3} />
                 </main>

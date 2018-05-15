@@ -73,7 +73,7 @@ class JobsMap extends React.Component {
             <div className="jb-fill" id="map">
                 {/* Controls */}
                 <div ref={this.searchControl} className="jb-control jb-btn" onClick={this.props.controlHeader}>
-                    <i className="fas fa-search fa-2x"></i>
+                    <i className="fa fa-search fa-2x"></i>
                 </div>
                 {/* Markers */}
                 {this.props.jobs.map((m) => 

@@ -58,7 +58,7 @@ header {
       font-size: 3em; }
     header .jb-logo .jb-title {
       flex: 1;
-      padding: 5px; }
+      padding: 0 0 0 10px; }
     header .jb-logo .jb-search {
       flex: 0 0 50px; }
     header .jb-logo .jb-btn {

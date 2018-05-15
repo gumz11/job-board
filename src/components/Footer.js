@@ -9,7 +9,7 @@ const Footer = (props) => {
                 <Link to="/contact"> Contact Us </Link>
             </div>
             <div>
-                <a><i className="far fa-copyright"></i> Job Board Inc. (jk)</a>
+                <a><i className="fa fa-copyright"></i> Job Board Inc. (jk)</a>
             </div>
         </footer>
     );

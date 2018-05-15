@@ -5,7 +5,7 @@ import {
     Redirect
 } from 'react-router-dom'
 
-import '../lib/fontawesome/css/fontawesome-all.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import '../styles/App.css';
 
 import Home from './Home';
