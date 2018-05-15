@@ -4,23 +4,35 @@ import { Link } from 'react-router-dom';
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { navVisible: '' };
+        this.state = { navVisible: '', value: '' };
     }
     handleClick = () => {
         this.setState((prevState) => ({
             navVisible: prevState.navVisible ? '' : 'jb-nav-visible'
         }));
     }
+    handleChange = (e) => {
+        this.setState({ value: e.target.value });
+    }
     render() {
         return (
-            <header className={`jb-${this.props.type}`}>
-                <div className="jb-logo jb-row">
-                    <i className="fa fa-map-o fa-5x"></i>        
-                    <h1 className="jb-title">Job Board</h1>
-                    <form onSubmit={this.props.onSearch}>
-                        <input className="jb-search" type="search" placeholder="Search jobs" />
+            <header className={`${this.props.className} jb-${this.props.display}`}>
+                <div className="jb-row">
+                    <Link className="jb-logo" to="/">
+                        <i className="fa fa-map-o fa-5x"></i>        
+                        <h1 className="jb-title">Job Board</h1>
+                    </Link>
+                    <form onSubmit={(e) => this.props.onSearch(e, this.state.value)}>
+                        <input className="jb-search" 
+                                type="text" 
+                                placeholder="Search jobs" 
+                                onChange={this.handleChange} />
                     </form>
-                    <button onClick={this.handleClick} className="jb-btn"><i className="fa fa-bars fa-2x"></i></button>
+                    <div className="jb-btn-wrapper">
+                        <button onClick={this.handleClick} className="jb-btn">
+                            <i className="fa fa-bars fa-2x"></i>
+                        </button>
+                    </div>
                 </div>
                 <nav className={`jb-nav jb-row ${this.state.navVisible}`}>
                     <Link to="/" className="jb-btn">Home</Link>

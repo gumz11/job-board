@@ -8,7 +8,7 @@ class JobsDetail extends React.Component {
             <React.Fragment>
                 <Header onSearch={this.props.onSearch} />
                 <main className="jb-fill jb-row">
-                    <section className="jb-main">
+                    <section className="jb-main jb-content">
                         {this.props.searching ? 'SEARCHING...' : this.props.job ? 
                             <React.Fragment>
                                 <h1>{this.props.job.title}</h1>

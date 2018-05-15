@@ -18,11 +18,11 @@ class Jobs extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header type={this.state.header} onSearch={this.props.onSearch} />
+                <Header className="jb-job-header" nav="hidden" display={this.state.header} onSearch={this.props.onSearch} />
                 <main className="jb-fill jb-row">
                     <section className="jb-fill jb-column">
                         <JobsForm />
-                        <JobsMap jobs={this.props.jobs} controlHeader={this.controlHeader}/>
+                        <JobsMap searching={this.props.searching} jobs={this.props.jobs} controlHeader={this.controlHeader}/>
                     </section>
                     <JobsSidebar />
                 </main>

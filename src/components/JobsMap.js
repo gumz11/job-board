@@ -1,6 +1,10 @@
 import React from 'react';
 
 import L from 'leaflet';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'leaflet.markercluster/dist/leaflet.markercluster.js';
+import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -11,7 +15,7 @@ class JobsMap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.layer = L.featureGroup();
+        this.layer = L.markerClusterGroup();
         this.markerIcon = L.icon({ 
             iconUrl: markerIcon, 
             iconSize: [25, 41],
@@ -26,21 +30,22 @@ class JobsMap extends React.Component {
 
     centerMap() {
         if (this.layer.getLayers().length) {
-            this.map.fitBounds(this.layer.getBounds());
+            this.map.fitBounds(this.layer.getBounds(), {
+                padding: [25, 25]
+            });
         }
     }
     
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        if (prevProps.jobs !== this.props.jobs) {
-            return true;
-        } 
-        return null;
-    }
-    
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (snapshot) {
+    componentDidUpdate(prevProps) {
+        if (prevProps.searching && !this.props.searching) {
             this.centerMap();
         }
+
+        if (this.props.jobs.length === 0) {
+            this.layer.clearLayers();
+        }
+
+        this.map.invalidateSize();
     }
     
     componentDidMount() {
@@ -48,7 +53,7 @@ class JobsMap extends React.Component {
             
         this.map = L.map('map', {
             center: [0, 0],
-            zoom: 1
+            zoom: 2
         });
         
         SearchControl = L.Control.extend({
@@ -57,9 +62,20 @@ class JobsMap extends React.Component {
 
         this.map.addControl(new SearchControl());
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.map);
+        L.gridLayer.googleMutant({
+			styles: [
+				{elementType: 'labels', stylers: [{visibility: 'off'}]},
+				{featureType: 'water', stylers: [{color: '#444444'}]},
+				{featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
+				{featureType: 'road', stylers: [{visibility: 'off'}]},
+				{featureType: 'poi', stylers: [{visibility: 'off'}]},
+				{featureType: 'transit', stylers: [{visibility: 'off'}]},
+				{featureType: 'administrative', stylers: [{visibility: 'off'}]},
+				{featureType: 'administrative.locality', stylers: [{visibility: 'off'}]}
+			],
+			maxZoom: 24,
+			type: 'roadmap'
+		}).addTo(this.map);
 
         this.layer.addTo(this.map);
 
