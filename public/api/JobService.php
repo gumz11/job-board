@@ -6,7 +6,7 @@ new JobService();
 
 class JobService {
     
-    const GITHUB_JOB_URL = 'https://jobs.github.com/positions.json?search=';
+    const GITHUB_JOB_URL = 'https://jobs.github.com/positions.json';
     const GOOGLE_GEO_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 
     private $database;
@@ -66,8 +66,14 @@ class JobService {
     
     // GET /jobs/
     private function getJobs() {
-        $get = isset($_GET['search']) ? $_GET['search'] : '';
-        $request = new ApiRequest('GET', $this::GITHUB_JOB_URL . $get);
+        $get = isset($_GET['search']) ? urlencode($_GET['search']) : '';
+        $page = isset($_GET['page']) ? urlencode($_GET['page']) : 0;
+        
+        $request = new ApiRequest('GET', 
+            $this::GITHUB_JOB_URL . 
+            '?search=' . $get . 
+            '&page=' . $page);
+
         $jobs = $request->request();
 
         if (!isset($jobs->error)) {
@@ -105,7 +111,11 @@ class JobService {
 
     private function appendLocationFromGoogleGeocoding($job) {
         global $config;
-        $request = new ApiRequest('GET', $this::GOOGLE_GEO_URL . '?address=' . urlencode($job->location) . '&key=' . $config['google-key']);
+        $request = new ApiRequest('GET', 
+            $this::GOOGLE_GEO_URL . 
+            '?address=' . urlencode($job->location) . 
+            '&key=' . $config['google-key']);
+            
         $location = $request->request();
 
         if (!isset($location->error) && isset($location->results[0]->geometry->location)) {
@@ -119,11 +129,11 @@ class JobService {
 
     private function insertLocationToDb($geo, $location) {
         if ($this->database) {
-            $prepare = $this->database->prepare('insert into geolocation (id, location, latitude, longitude) values (null, ?, ?, ?)');
+            $prepare = $this->database->prepare('insert into geolocation (location, latitude, longitude) values (?, ?, ?)');
             $result  = $prepare->execute(array(
                 $location,
                 $geo->lat,
-                $geo->lng,
+                $geo->lng
             ));
         }
     }
