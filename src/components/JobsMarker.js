@@ -14,7 +14,9 @@ class JobsMarker extends React.Component {
             layer } = this.props;
 
         if (lat && lng) {
-            let marker = L.marker([lat, lng]).setIcon(markerIcon).bindPopup(this.popup.current);
+            let marker = L.marker([lat, lng], {
+                id: this.props.id
+            }).setIcon(markerIcon).bindPopup(this.popup.current.cloneNode(true));
             layer.addLayer(marker);
         }
     }

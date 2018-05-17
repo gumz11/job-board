@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   background-color: #353223;
-  color: #cab248; }
+  color: #eee; }
 
 h1, h2, h3, h4, h5, p, a {
   margin: 0;
@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, p, a {
 a {
   font-weight: bold;
   text-decoration: none;
-  color: #cab248;
+  color: #eee;
   transition: color 0.2s ease-out; }
 
 .jb-hidden {
@@ -37,7 +37,8 @@ a {
   flex: 1; }
 
 .jb-content {
-  max-width: 1000px; }
+  max-width: 1000px;
+  font-size: 0.9em; }
 
 .jb-btn {
   color: #353223;
@@ -100,16 +101,35 @@ main .jb-background {
   background-position: center;
   background-attachment: fixed; }
 main .jb-banner {
+  background-color: #444;
   padding: 25px; }
 main .jb-icon {
   padding: 15px;
   max-width: 300px; }
   main .jb-icon h4 {
     padding: 10px; }
-main aside.jb-sidebar {
-  display: none; }
-main .jb-form {
-  display: none; }
+main section.jb-fill {
+  flex: 3; }
+main aside {
+  display: none;
+  flex: 1;
+  margin-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 0.8em; }
+  main aside table {
+    width: 100%;
+    color: #eee;
+    background-color: #444;
+    border-collapse: collapse;
+    text-align: left; }
+    main aside table th, main aside table td {
+      padding: 5px;
+      border-top: 1px solid gray; }
+    main aside table thead th {
+      border-bottom: 2px solid grey; }
+    main aside table tbody tr:hover {
+      background-color: #555; }
 main #map {
   color: black; }
   main #map > .jb-control {
@@ -121,15 +141,25 @@ main section.jb-main {
   margin: 0 auto; }
 
 footer {
-  padding: 50px 0;
+  padding: 50px 10px;
   width: 100%; }
   footer div {
     flex: 1; }
-  footer a {
-    padding: 5px; }
 
 @media (min-width: 576px) {
   header .jb-row form {
     display: block; } }
+@media (min-width: 992px) {
+  header.jb-job-header {
+    display: block; }
+
+  main.jb-main {
+    width: 100%;
+    margin: 10px auto;
+    max-width: 1440px; }
+    main.jb-main #map .jb-btn {
+      display: none; }
+    main.jb-main aside {
+      display: block; } }
 
 /*# sourceMappingURL=app.css.map */
