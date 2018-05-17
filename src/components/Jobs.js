@@ -3,7 +3,7 @@ import React from 'react';
 import L from 'leaflet';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-import 'leaflet.markercluster/dist/leaflet.markercluster-src.js';
+import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 
@@ -19,6 +19,7 @@ class Jobs extends React.Component {
 
         this.map = null;
         this.layer = L.markerClusterGroup();
+        this.searchControl = React.createRef();
     }
 
     headerControl = () => {
@@ -31,10 +32,25 @@ class Jobs extends React.Component {
         let markers = this.layer.getLayers(),
             marker = markers.find((m) => m.options.id === markerData.id);
 
-        this.map.fire('click');
-        this.centerMap(marker.__parent.getBounds(), () => {
-            this.recursiveZoomOrSpiderfy(marker);
-        });
+        if (marker) {
+            this.centerMap(marker.__parent.getBounds(), () => {
+                this.recursiveZoomOrSpiderfy(marker);
+            });
+        }
+    }
+
+    recursiveZoomOrSpiderfy(marker) {
+        let parent = marker.__parent,
+            group = parent._group;
+
+        if (marker.getElement()) {
+            marker.openPopup();
+        } else {
+            group.once('animationend', () => {
+                this.recursiveZoomOrSpiderfy(marker);
+            });
+            group._zoomOrSpiderfy({layer: parent});
+        }
     }
 
     centerMap(bounds, cb) {
@@ -57,20 +73,6 @@ class Jobs extends React.Component {
 
         this.map.invalidateSize();
     }
-
-    recursiveZoomOrSpiderfy(marker) {
-        let parent = marker.__parent,
-            group = parent._group;
-
-        if (parent._childClusters.length || group._spiderfied) {
-            marker.openPopup();
-        } else {
-            group.once('animationend', () => {
-                this.recursiveZoomOrSpiderfy(marker);
-            });
-            group._zoomOrSpiderfy({layer: parent});
-        }
-    }
     
     componentDidMount() {          
         this.map = L.map('map', {
@@ -78,6 +80,26 @@ class Jobs extends React.Component {
             zoom: 2,
             maxZoom: 24
         });
+
+        let SearchControl = L.Control.extend({
+            onAdd: () => this.searchControl.current
+        });
+
+        this.map.addControl(new SearchControl());
+
+        L.gridLayer.googleMutant({
+            styles: [
+                {elementType: 'labels.text.stroke', stylers: [{visibility: 'off'}]},
+                {featureType: 'water', stylers: [{color: '#444444'}]},
+                {featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
+                {featureType: 'road', stylers: [{visibility: 'off'}]},
+                {featureType: 'poi', stylers: [{visibility: 'off'}]},
+                {featureType: 'transit', stylers: [{visibility: 'off'}]},
+                // {featureType: 'administrative', stylers: [{visibility: 'off'}]},
+                {featureType: 'administrative.locality', stylers: [{visibility: 'off'}]}
+            ],
+            type: 'roadmap'
+        }).addTo(this.map);
 
         this.layer.addTo(this.map);
 
@@ -93,8 +115,10 @@ class Jobs extends React.Component {
                 <main className="jb-main jb-fill jb-row">
                     <section className="jb-fill jb-column">
                         <div className="jb-fill" id="map">
-                            <JobsMap jobs={this.props.jobs} 
-                                headerControl={this.headerControl} 
+                            <div ref={this.searchControl} className="jb-control jb-btn" onClick={this.headerControl}>
+                                <i className="fa fa-search fa-2x"></i>
+                            </div>
+                            <JobsMap jobs={this.props.jobs}  
                                 layer={this.layer}
                                 map={this.map} />
                         </div>
