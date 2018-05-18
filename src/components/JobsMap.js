@@ -1,34 +1,117 @@
 import React from 'react';
-
 import L from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-import JobsMarker from './JobsMarker';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'leaflet.markercluster/dist/leaflet.markercluster.js';
+import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
+import 'leaflet/dist/leaflet.css';
+
+import Header from './Header';
+import MapLayer from './MapLayer';
+import MapControl from './MapControl';
+import MapMarker from './MapMarker';
+import JobsSidebar from './JobsSidebar';
 
 class JobsMap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.markerIcon = L.icon({ 
-            iconUrl: markerIcon, 
-            iconSize: [25, 41],
-            iconAnchor: [13.5, 40],
-            popupAnchor: [0, -25],
-            shadowUrl: markerShadow,
-            shadowSize: [41, 41]
-        });
+        this.state = { header: 'hidden', map: null };
+        this.group = L.markerClusterGroup();
     }
 
+    headerControl = () => {
+        this.setState(prevState => ({
+            header: prevState.header ? '' : 'hidden'
+        }));
+    }
+
+    onSidebarClick = (markerData) => {
+        let markers = this.group.getLayers(),
+            marker = markers.find((m) => m.options.id === markerData.id);
+
+        if (marker) {
+            this.centerMap(marker.__parent.getBounds(), () => {
+                this.recursiveZoomOrSpiderfy(marker);
+            });
+        }
+    }
+
+    recursiveZoomOrSpiderfy(marker) {
+        let parent = marker.__parent,
+            group = parent._group;
+
+        if (marker.getElement()) {
+            marker.openPopup();
+        } else {
+            group.once('animationend', () => {
+                this.recursiveZoomOrSpiderfy(marker);
+            });
+            group._zoomOrSpiderfy({layer: parent});
+        }
+    }
+
+    centerMap(bounds, cb) {
+        if (bounds.isValid()) {
+            if (cb) this.map.once('moveend', cb);
+            this.map.fitBounds(bounds, {
+                maxZoom: 15
+            });
+        }
+    }
+    
+    componentDidUpdate(prevProps) {
+        if (prevProps.searching && !this.props.searching) {
+            this.centerMap(this.group.getBounds());
+        }
+
+        if (this.props.jobs.length === 0) {
+            this.group.clearLayers();
+        }
+
+        this.state.map.invalidateSize();
+    }
+    
+    componentDidMount() {       
+        this.setState({
+            map: L.map('map', {
+                center: [0, 0],
+                zoom: 2,
+                maxZoom: 24
+            })
+        }, () => {
+            this.group.addTo(this.state.map);
+
+            if (this.props.jobs.length) {
+                this.centerMap(this.group.getBounds());
+            }
+        });
+    }
+    
     render() {
         return (
             <React.Fragment>
-                {this.props.jobs.map((m) => 
-                    <JobsMarker {...m} markerIcon={this.markerIcon} layer={this.props.layer} key={m.id} /> 
-                )}
+                <Header className="jb-job-header" nav="hidden" display={this.state.header} onSearch={this.props.onSearch} />
+                <main className="jb-main jb-fill jb-row">
+                    <section className="jb-fill jb-column">
+                        <div className="jb-fill" id="map">
+                        </div>
+                        {this.state.map ? 
+                            <React.Fragment>
+                                <MapLayer map={this.state.map} />
+                                <MapControl icon="search" control={this.headerControl} map={this.state.map} />
+                                {this.props.jobs.map((m) => 
+                                    <MapMarker {...m} group={this.group} key={m.id} /> 
+                                )}
+                            </React.Fragment>
+                        : ''}
+                    </section>
+                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
+                </main>
             </React.Fragment>
         );
     }
-}
+} 
 
 export default JobsMap;

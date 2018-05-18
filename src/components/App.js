@@ -9,7 +9,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../styles/App.css';
 
 import Home from './Home';
-import Jobs from './Jobs';
+import JobsMap from './JobsMap';
 import JobDetail from './JobDetail';
 
 class App extends Component {
@@ -52,6 +52,9 @@ class App extends Component {
                 } else {
                     this.setState({ formSearch: false, searching: false });
                 }
+            })
+            .catch((e) => {
+                this.setState({ formSearch: false, searching: false, error: e });
             });
     }
 
@@ -65,7 +68,7 @@ class App extends Component {
                     }/>
 
                     <Route path="/jobs" render={() => 
-                        <Jobs searching={this.state.searching} jobs={this.state.jobs} onSearch={this.onSearch} />
+                        <JobsMap searching={this.state.searching} jobs={this.state.jobs} onSearch={this.onSearch} />
                     }/>
                     
                     <Route path="/job/:jobId" render={({match}) => 
