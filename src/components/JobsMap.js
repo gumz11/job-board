@@ -54,10 +54,8 @@ class JobsMap extends React.Component {
 
     centerMap(bounds, cb) {
         if (bounds.isValid()) {
-            if (cb) this.map.once('moveend', cb);
-            this.map.fitBounds(bounds, {
-                maxZoom: 15
-            });
+            if (cb) this.state.map.once('moveend', cb);
+            this.state.map.fitBounds(bounds);
         }
     }
     
@@ -78,7 +76,7 @@ class JobsMap extends React.Component {
             map: L.map('map', {
                 center: [0, 0],
                 zoom: 2,
-                maxZoom: 24
+                maxZoom: 14
             })
         }, () => {
             this.group.addTo(this.state.map);
