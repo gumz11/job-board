@@ -3,7 +3,7 @@ $off-color: #353223;
 $gray-color: #444;
 $white-color: #eee;
 
-
+$padding: 0.5em;
 $media-xlg: 1440px;
 $media-lg: 992px;
 $media-md: 768px;
@@ -66,7 +66,7 @@ a {
     background-color: $main-color;
     border-radius: 4px;
     border: 2px solid $off-color;
-    padding: 10px;
+    padding: 1em;
 }
 
 header {
@@ -74,6 +74,7 @@ header {
     width: 100%;
     background-color: $main-color;
     color: $off-color;
+    border-bottom: 2px solid $off-color;
     
     .jb-row {
         align-items: center;
@@ -81,7 +82,7 @@ header {
 
         .jb-logo {
             display: flex;
-            padding: 10px;
+            padding: $padding;
             align-items: center;
             color: $off-color;
     
@@ -90,58 +91,65 @@ header {
             }
     
             .jb-title {
-                padding: 0 0 0 10px;
+                padding: 0 0 0 $padding;
             }
         }
         
-        form {
+        .jb-nav-wrapper {
             flex: 1;
+            display: flex;
             text-align: right;
-            margin: 10px;
-            display: none;
-        }
-        .jb-btn-wrapper {
-            flex: 1;
-            text-align: right;
+            align-items: center;
+            justify-content: flex-end;
+            padding: $padding;
+            position: relative;
+
+            form {
+                flex: 1;
+                text-align: right;
+                margin: $padding;
+                display: none;
+            }
+
             button {
-                width: 45px;
-                margin: 10px;
+                margin: $padding;
             }
-        }
-    }
 
-    .jb-nav {
-        display: none;
+            .jb-nav {
+                display: none;
+                flex-wrap: wrap;
+                position: absolute;
+                top: 65px;
+                
+                a {
+                    flex: 0 0 100%;
+                    display: list-item;
+                    text-align: center;
+                    list-style-type: none;
+                    &:hover {
+                        color: #756c45;
+                    }    
+                    &:first-of-type {
+                        border-bottom: none;
+                    }
+                }
+            }
         
-        a {
-            flex: 0 0 100%;
-            font-size: 1.5em;
-            margin-top: -50px;
-            display: list-item;
-            text-align: center;
-            &:hover {
-                color: #756c45;
-            }    
-            &:first-of-type {
-                border-bottom: none;
+            .jb-nav-visible {
+                display: flex;
             }
-        }
-    }
-
-    .jb-nav-visible {
-        display: block;
-        a {
-            margin-top: 0;
         }
     }
 
     &.jb-job-header {
-        form {
-            display: block;
-        } 
+        .jb-row .jb-nav-wrapper {
+            form {
+                display: block;
+            } 
 
-        div.jb-btn-wrapper, nav {
-            display: none;
+            button, nav {
+                display: none;
+            }
         }
     }
 }
@@ -155,6 +163,9 @@ main {
     }
 
     .jb-banner {
+        border: 2px solid black;
+        border-right: none;
+        border-left: none;
         background-color: $gray-color;
         padding: 25px;
     }
@@ -163,7 +174,7 @@ main {
         padding: 15px;
         max-width: 300px;
         h4 {
-            padding: 10px;
+            padding: $padding;
         }
     }
 
@@ -175,15 +186,15 @@ main {
         display: none;
 
         flex: 1;
-        margin-left: 10px;
+        margin-left: $padding;
         overflow-y: auto;
         overflow-x: hidden;
         font-size: 0.8em;
 
         table {
             width: 100%;
-            color: #eee;
-            background-color: #444;
+            color: $white-color;
+            background-color: $gray-color;
             border-collapse: collapse;
             text-align: left;
             
@@ -193,7 +204,7 @@ main {
             }
             
             thead th {
-                border-bottom: 2px solid grey;
+                border-bottom: 2px solid gray;
             }
 
             tbody tr:hover {
@@ -205,7 +216,7 @@ main {
     #map {
         color: black;
         
-        > .jb-control {
+        ~ .jb-control {
             display: none;
         }
 
@@ -215,14 +226,15 @@ main {
     }
 
     section.jb-main {
-        padding: 10px;
+        padding: $padding;
         margin: 0 auto;
     }
 
 }
 
 footer {
-    padding: 50px 10px;
+    border-top: 2px solid black;
+    padding: 50px $padding;
     width: 100%;
     div {
         flex: 1;
@@ -233,7 +245,7 @@ footer {
 @media (min-width: $media-sm) {
     header {
         .jb-row {
-            form {
+            .jb-nav-wrapper form {
                 display: block;
             }
         }
@@ -241,6 +253,17 @@ footer {
 }
 
 @media (min-width: $media-md) {
+    header.jb-expand {
+        border: none;
+        .jb-row .jb-logo {
+            .jb-title {
+                font-size: 4em;
+            }
+            .fa-5x {
+                font-size: 10em;
+            }
+        }
+    }
     
 }
 @media (min-width: $media-lg) {
@@ -251,7 +274,7 @@ footer {
     }
     main.jb-main {
         width: 100%;
-        margin: 10px auto;
+        margin: $padding auto;
         max-width: $media-xlg;
 
         #map {
@@ -266,7 +289,5 @@ footer {
     }
 }
 
-@media (min-width: $media-xlg) {
-   
-}
+@media (min-width: $media-xlg) {}
   

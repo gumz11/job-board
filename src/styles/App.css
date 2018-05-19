@@ -45,55 +45,60 @@ a {
   background-color: #f5d02a;
   border-radius: 4px;
   border: 2px solid #353223;
-  padding: 10px; }
+  padding: 1em; }
 
 header {
   top: 0;
   width: 100%;
   background-color: #f5d02a;
-  color: #353223; }
+  color: #353223;
+  border-bottom: 2px solid #353223; }
   header .jb-row {
     align-items: center;
     flex-wrap: nowrap; }
     header .jb-row .jb-logo {
       display: flex;
-      padding: 10px;
+      padding: 0.5em;
       align-items: center;
       color: #353223; }
       header .jb-row .jb-logo .fa-5x {
         font-size: 3em; }
       header .jb-row .jb-logo .jb-title {
-        padding: 0 0 0 10px; }
-    header .jb-row form {
+        padding: 0 0 0 0.5em; }
+    header .jb-row .jb-nav-wrapper {
       flex: 1;
+      display: flex;
       text-align: right;
-      margin: 10px;
-      display: none; }
-    header .jb-row .jb-btn-wrapper {
-      flex: 1;
-      text-align: right; }
-      header .jb-row .jb-btn-wrapper button {
-        width: 45px;
-        margin: 10px; }
-  header .jb-nav {
-    display: none; }
-    header .jb-nav a {
-      flex: 0 0 100%;
-      font-size: 1.5em;
-      margin-top: -50px;
-      display: list-item;
-      text-align: center; }
-      header .jb-nav a:hover {
-        color: #756c45; }
-      header .jb-nav a:first-of-type {
-        border-bottom: none; }
-  header .jb-nav-visible {
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.5em;
+      position: relative; }
+      header .jb-row .jb-nav-wrapper form {
+        flex: 1;
+        text-align: right;
+        margin: 0.5em;
+        display: none; }
+      header .jb-row .jb-nav-wrapper button {
+        margin: 0.5em; }
+      header .jb-row .jb-nav-wrapper .jb-nav {
+        display: none;
+        flex-wrap: wrap;
+        position: absolute;
+        top: 65px; }
+        header .jb-row .jb-nav-wrapper .jb-nav a {
+          flex: 0 0 100%;
+          display: list-item;
+          text-align: center;
+          list-style-type: none; }
+          header .jb-row .jb-nav-wrapper .jb-nav a:hover {
+            color: #756c45; }
+          header .jb-row .jb-nav-wrapper .jb-nav a:first-of-type {
+            border-bottom: none; }
+      header .jb-row .jb-nav-wrapper .jb-nav-visible {
+        display: flex; }
+  header.jb-job-header .jb-row .jb-nav-wrapper form {
     display: block; }
-    header .jb-nav-visible a {
-      margin-top: 0; }
-  header.jb-job-header form {
-    display: block; }
-  header.jb-job-header div.jb-btn-wrapper, header.jb-job-header nav {
+  header.jb-job-header .jb-row .jb-nav-wrapper button, header.jb-job-header .jb-row .jb-nav-wrapper nav {
     display: none; }
 
 main .jb-background {
@@ -101,19 +106,22 @@ main .jb-background {
   background-position: center;
   background-attachment: fixed; }
 main .jb-banner {
+  border: 2px solid black;
+  border-right: none;
+  border-left: none;
   background-color: #444;
   padding: 25px; }
 main .jb-icon {
   padding: 15px;
   max-width: 300px; }
   main .jb-icon h4 {
-    padding: 10px; }
+    padding: 0.5em; }
 main section.jb-fill {
   flex: 3; }
 main aside {
   display: none;
   flex: 1;
-  margin-left: 10px;
+  margin-left: 0.5em;
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 0.8em; }
@@ -127,35 +135,43 @@ main aside {
       padding: 5px;
       border-top: 1px solid gray; }
     main aside table thead th {
-      border-bottom: 2px solid grey; }
+      border-bottom: 2px solid gray; }
     main aside table tbody tr:hover {
       background-color: #555; }
 main #map {
   color: black; }
-  main #map > .jb-control {
+  main #map ~ .jb-control {
     display: none; }
   main #map .leaflet-popup-content p {
     margin: 0; }
 main section.jb-main {
-  padding: 10px;
+  padding: 0.5em;
   margin: 0 auto; }
 
 footer {
-  padding: 50px 10px;
+  border-top: 2px solid black;
+  padding: 50px 0.5em;
   width: 100%; }
   footer div {
     flex: 1; }
 
 @media (min-width: 576px) {
-  header .jb-row form {
+  header .jb-row .jb-nav-wrapper form {
     display: block; } }
+@media (min-width: 768px) {
+  header.jb-expand {
+    border: none; }
+    header.jb-expand .jb-row .jb-logo .jb-title {
+      font-size: 4em; }
+    header.jb-expand .jb-row .jb-logo .fa-5x {
+      font-size: 10em; } }
 @media (min-width: 992px) {
   header.jb-job-header {
     display: block; }
 
   main.jb-main {
     width: 100%;
-    margin: 10px auto;
+    margin: 0.5em auto;
     max-width: 1440px; }
     main.jb-main #map .jb-btn {
       display: none; }

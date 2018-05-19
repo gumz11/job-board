@@ -22,22 +22,22 @@ class Header extends React.Component {
                         <i className="fa fa-map-o fa-5x"></i>        
                         <h1 className="jb-title">Job Board</h1>
                     </Link>
-                    <form onSubmit={(e) => this.props.onSearch(e, this.state.value)}>
-                        <input className="jb-search" 
-                                type="text" 
-                                placeholder="Search jobs" 
-                                onChange={this.handleChange} />
-                    </form>
-                    <div className="jb-btn-wrapper">
+                    <div className="jb-nav-wrapper">
+                        <form onSubmit={(e) => this.props.onSearch(e, this.state.value)}>
+                            <input className="jb-search" 
+                                    type="text" 
+                                    placeholder="Search jobs" 
+                                    onChange={this.handleChange} />
+                        </form>
                         <button onClick={this.handleClick} className="jb-btn">
                             <i className="fa fa-bars fa-2x"></i>
                         </button>
+                        <nav className={`jb-nav jb-row ${this.state.navVisible}`}>
+                            <Link to="/" className="jb-btn">Home</Link>
+                            <Link to="/jobs" className="jb-btn">Jobs</Link>
+                        </nav>
                     </div>
                 </div>
-                <nav className={`jb-nav jb-row ${this.state.navVisible}`}>
-                    <Link to="/" className="jb-btn">Home</Link>
-                    <Link to="/jobs" className="jb-btn">Jobs</Link>
-                </nav>
             </header>
         );
     }

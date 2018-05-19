@@ -15,7 +15,7 @@ class Home extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header display='fixed' onSearch={this.props.onSearch} />
+                <Header className="jb-expand" display='fixed' onSearch={this.props.onSearch} />
                 <main>
                     <HomeFill screen={screen4} />
                     <HomeBanner>
