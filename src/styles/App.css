@@ -116,6 +116,24 @@ main .jb-icon {
   max-width: 300px; }
   main .jb-icon h4 {
     padding: 0.5em; }
+main .jb-spinner {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  text-align: center; }
+  main .jb-spinner i {
+    color: #f5d02a;
+    animation: spin 2s ease-out infinite; }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 main section.jb-fill {
   flex: 3; }
 main aside {
@@ -159,12 +177,10 @@ footer {
   header .jb-row .jb-nav-wrapper form {
     display: block; } }
 @media (min-width: 768px) {
-  header.jb-expand {
-    border: none; }
-    header.jb-expand .jb-row .jb-logo .jb-title {
-      font-size: 4em; }
-    header.jb-expand .jb-row .jb-logo .fa-5x {
-      font-size: 10em; } }
+  header.jb-expand .jb-row .jb-logo .jb-title {
+    font-size: 4em; }
+  header.jb-expand .jb-row .jb-logo .fa-5x {
+    font-size: 10em; } }
 @media (min-width: 992px) {
   header.jb-job-header {
     display: block; }
@@ -173,6 +189,8 @@ footer {
     width: 100%;
     margin: 0.5em auto;
     max-width: 1440px; }
+    main.jb-main .jb-spinner {
+      margin-top: -0.5em; }
     main.jb-main #map .jb-btn {
       display: none; }
     main.jb-main aside {
