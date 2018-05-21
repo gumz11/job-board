@@ -91,7 +91,14 @@ class JobsMap extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header className="jb-job-header" nav="hidden" display={this.state.header} onSearch={this.props.onSearch} />
+
+                <Header className="jb-job-header" 
+                    nav="hidden" 
+                    display={this.state.header} 
+                    onSearch={this.props.onSearch}
+                    formSearch={this.props.formSearch} 
+                    searching={this.props.searching} />
+
                 <main className="jb-main jb-fill jb-row">
                     {(this.props.searching || this.props.error) && <MapMessage error={this.props.error}/>}
                     <section className="jb-fill jb-column">
@@ -109,6 +116,7 @@ class JobsMap extends React.Component {
                     </section>
                     <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
                 </main>
+
             </React.Fragment>
         );
     }

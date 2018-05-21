@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { navVisible: '', value: '' };
+        this.state = { navVisible: '', value: this.props.formSearch };
     }
     handleClick = () => {
         this.setState((prevState) => ({
@@ -13,6 +13,11 @@ class Header extends React.Component {
     }
     handleChange = (e) => {
         this.setState({ value: e.target.value });
+    }
+    componentDidUpdate(prevProps) {
+        if (!prevProps.formSearch && this.props.formSearch) {
+            this.setState({ value: this.props.formSearch });
+        }
     }
     render() {
         return (
@@ -25,9 +30,10 @@ class Header extends React.Component {
                     <div className="jb-nav-wrapper">
                         <form onSubmit={(e) => this.props.onSearch(e, this.state.value)}>
                             <input className="jb-search" 
-                                    type="text" 
+                                    value={this.state.value}
                                     placeholder="Search jobs" 
-                                    onChange={this.handleChange} />
+                                    onChange={this.handleChange}
+                                    disabled={this.props.searching} />
                         </form>
                         <button onClick={this.handleClick} className="jb-btn">
                             <i className="fa fa-bars fa-2x"></i>

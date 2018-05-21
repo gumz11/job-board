@@ -19,7 +19,7 @@ class App extends Component {
         this.state = { 
             jobs: [], 
             searching: true, 
-            formSearch: false, 
+            formSearch: '', 
             error: null 
         };
     }
@@ -34,7 +34,7 @@ class App extends Component {
         e.preventDefault();
         this.setState({
             searching: true,
-            formSearch: true,
+            formSearch: searchVal,
             jobs: [],
             error: null
         });
@@ -65,7 +65,7 @@ class App extends Component {
             })
             .catch((e) => {
                 this.setState({ 
-                    formSearch: false, 
+                    formSearch: '', 
                     searching: false, 
                     error: 'An error occured. Please search again or refresh your browser.' 
                 });
@@ -83,6 +83,7 @@ class App extends Component {
 
                     <Route path="/jobs" render={() => 
                         <JobsMap searching={this.state.searching} 
+                            formSearch={this.state.formSearch}
                             jobs={this.state.jobs} 
                             onSearch={this.onSearch}
                             error={this.state.error} />
