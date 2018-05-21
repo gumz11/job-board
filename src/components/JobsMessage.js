@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MapMessage = (props) => (
+const JobsMessage = (props) => (
     <div className="jb-message">
         {props.error ? 
             <h2> <i className="fa fa-exclamation-triangle"></i> {props.error} </h2> :
@@ -9,4 +9,4 @@ const MapMessage = (props) => (
     </div>
 );
 
-export default MapMessage;
+export default JobsMessage;

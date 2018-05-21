@@ -60,7 +60,7 @@ class App extends Component {
                 if (jobs.length) {
                     this.search(searchVal, ++page);
                 } else {
-                    this.setState({ formSearch: false, searching: false, error: null });
+                    this.setState({ formSearch: '', searching: false, error: null });
                 }
             })
             .catch((e) => {

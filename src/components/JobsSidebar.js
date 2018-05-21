@@ -1,7 +1,7 @@
 import React from 'react';
 
 const JobsSidebar = (props) => (
-    <aside>
+    <aside className={`jb-${props.display}`}>
         <table>
             <thead>
                 <tr>

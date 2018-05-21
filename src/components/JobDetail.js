@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from "./Header";
-import MapMessage from './MapMessage';
+import JobsMessage from './JobsMessage';
 
 class JobsDetail extends React.Component {
     render() {
@@ -9,7 +9,7 @@ class JobsDetail extends React.Component {
             <React.Fragment>
                 <Header onSearch={this.props.onSearch} />
                 <main className="jb-fill jb-row">
-                    {this.props.searching ? <MapMessage /> : !this.props.job  && <MapMessage error="Job not found." /> }
+                    {this.props.searching ? <JobsMessage /> : !this.props.job  && <JobsMessage error="Job not found." /> }
                     <section className="jb-main jb-content">
                         {this.props.job && 
                             <React.Fragment>

@@ -8,9 +8,9 @@ import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 
 import Header from './Header';
-import MapMessage from './MapMessage';
+import JobsMessage from './JobsMessage';
 import MapLayer from './MapLayer';
-import MapControl from './MapControl';
+import JobsControl from './JobsControl';
 import MapMarker from './MapMarker';
 import JobsSidebar from './JobsSidebar';
 
@@ -18,13 +18,31 @@ class JobsMap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { header: 'hidden', map: null };
+        this.state = { 
+            header: 'hidden', 
+            aside: {
+                display: '',
+                icon: 'left'   
+            }, 
+            map: null };
         this.group = L.markerClusterGroup();
     }
 
     headerControl = () => {
         this.setState(prevState => ({
             header: prevState.header ? '' : 'hidden'
+        }));
+    }
+
+    asideControl = () => {
+        this.setState(prevState => ({
+            aside: prevState.aside.display ? {
+                display: '',
+                icon: 'left'
+            } : {
+                display: 'fixed',
+                icon: 'right'
+            }
         }));
     }
 
@@ -36,6 +54,10 @@ class JobsMap extends React.Component {
             this.centerMap(marker.__parent.getBounds(), () => {
                 this.recursiveZoomOrSpiderfy(marker);
             });
+        }
+
+        if (this.state.aside.display) {
+            this.asideControl();
         }
     }
 
@@ -100,21 +122,24 @@ class JobsMap extends React.Component {
                     searching={this.props.searching} />
 
                 <main className="jb-main jb-fill jb-row">
-                    {(this.props.searching || this.props.error) && <MapMessage error={this.props.error}/>}
+                    {(this.props.searching || this.props.error) && <JobsMessage error={this.props.error}/>}
+                    <div className="jb-controls">
+                        <JobsControl icon="search" control={this.headerControl} />
+                        <JobsControl icon={`angle-double-${this.state.aside.icon}`} control={this.asideControl} />
+                    </div>
                     <section className="jb-fill jb-column">
                         <div className="jb-fill" id="map">
                         </div>
                         {this.state.map && 
                             <React.Fragment>
                                 <MapLayer map={this.state.map} />
-                                <MapControl icon="search" control={this.headerControl} map={this.state.map} />
                                 {this.props.jobs.map((m) => 
                                     <MapMarker {...m} group={this.group} key={m.id} /> 
                                 )}
                             </React.Fragment>
                         }
                     </section>
-                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
+                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} display={this.state.aside.display} />
                 </main>
 
             </React.Fragment>

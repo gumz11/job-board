@@ -37,7 +37,7 @@ class MapMarker extends React.Component {
     render() {
         return (
             <div className='jb-control' ref={this.popup}>
-                <Link to={`job/${this.props.id}`}>{this.props.title}</Link>
+                <Link to={`/job/${this.props.id}`}>{this.props.title}</Link>
                 <p> {this.props.company} - {this.props.location} </p>
             </div>
         );
