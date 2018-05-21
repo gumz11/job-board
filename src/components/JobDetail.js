@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from "./Header";
+import MapMessage from './MapMessage';
 
 class JobsDetail extends React.Component {
     render() {
@@ -8,8 +9,9 @@ class JobsDetail extends React.Component {
             <React.Fragment>
                 <Header onSearch={this.props.onSearch} />
                 <main className="jb-fill jb-row">
+                    {this.props.searching ? <MapMessage /> : !this.props.job  && <MapMessage error="Job not found." /> }
                     <section className="jb-main jb-content">
-                        {this.props.searching ? 'SEARCHING...' : this.props.job ? 
+                        {this.props.job && 
                             <React.Fragment>
                                 <h1>{this.props.job.title}</h1>
                                 <h4>{this.props.job.company} - {this.props.job.location} </h4>
@@ -18,7 +20,7 @@ class JobsDetail extends React.Component {
                                 <br/>
                                 <p dangerouslySetInnerHTML={{__html: this.props.job.description}} />
                             </React.Fragment>
-                        : 'JOB NOT FOUND'}
+                        }
                     </section>
                 </main>
             </React.Fragment>

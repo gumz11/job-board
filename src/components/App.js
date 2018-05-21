@@ -16,7 +16,12 @@ class App extends Component {
     constructor(props) {
         super(props);
     
-        this.state = { jobs: [], searching: true, formSearch: false };
+        this.state = { 
+            jobs: [], 
+            searching: true, 
+            formSearch: false, 
+            error: null 
+        };
     }
     
     componentDidMount() {
@@ -30,7 +35,8 @@ class App extends Component {
         this.setState({
             searching: true,
             formSearch: true,
-            jobs: []
+            jobs: [],
+            error: null
         });
 
         this.search(searchVal, 0);
@@ -43,6 +49,10 @@ class App extends Component {
             .then(r => r.json())
             .then((jobs) => {
 
+                if (jobs.error) {
+                    throw new Error(jobs.message);
+                }
+
                 this.setState(prevState => ({
                     jobs: prevState.jobs.concat(jobs)
                 }));
@@ -50,11 +60,15 @@ class App extends Component {
                 if (jobs.length) {
                     this.search(searchVal, ++page);
                 } else {
-                    this.setState({ formSearch: false, searching: false });
+                    this.setState({ formSearch: false, searching: false, error: null });
                 }
             })
             .catch((e) => {
-                this.setState({ formSearch: false, searching: false, error: e });
+                this.setState({ 
+                    formSearch: false, 
+                    searching: false, 
+                    error: 'An error occured. Please search again or refresh your browser.' 
+                });
             });
     }
 
@@ -68,7 +82,10 @@ class App extends Component {
                     }/>
 
                     <Route path="/jobs" render={() => 
-                        <JobsMap searching={this.state.searching} jobs={this.state.jobs} onSearch={this.onSearch} />
+                        <JobsMap searching={this.state.searching} 
+                            jobs={this.state.jobs} 
+                            onSearch={this.onSearch}
+                            error={this.state.error} />
                     }/>
                     
                     <Route path="/job/:jobId" render={({match}) => 

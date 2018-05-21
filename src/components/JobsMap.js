@@ -8,7 +8,7 @@ import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 
 import Header from './Header';
-import Spinner from './Spinner';
+import MapMessage from './MapMessage';
 import MapLayer from './MapLayer';
 import MapControl from './MapControl';
 import MapMarker from './MapMarker';
@@ -93,7 +93,7 @@ class JobsMap extends React.Component {
             <React.Fragment>
                 <Header className="jb-job-header" nav="hidden" display={this.state.header} onSearch={this.props.onSearch} />
                 <main className="jb-main jb-fill jb-row">
-                    {this.props.searching && <Spinner />}
+                    {(this.props.searching || this.props.error) && <MapMessage error={this.props.error}/>}
                     <section className="jb-fill jb-column">
                         <div className="jb-fill" id="map">
                         </div>

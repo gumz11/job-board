@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 
 const Footer = (props) => {
     return (
-        <footer className="jb-content jb-center jb-row">
-            <div>
-                <Link to="/about"> About </Link> 
-            </div>
-            <div>
-                <a><i className="fa fa-copyright"></i> Job Board Inc. </a>
+        <footer>
+            <div className="jb-content jb-center jb-row">
+                <div>
+                    <Link to="/about"> About </Link> 
+                </div>
+                <div>
+                    <a><i className="fa fa-copyright"></i> Job Board </a>
+                </div>
             </div>
         </footer>
     );

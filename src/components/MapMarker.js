@@ -19,7 +19,7 @@ class MapMarker extends React.Component {
         });
         this.popup = React.createRef();
     }
-    
+
     componentDidMount() {
         let { lat, 
             lng, 
@@ -39,7 +39,7 @@ class MapMarker extends React.Component {
             <div className='jb-control' ref={this.popup}>
                 <Link to={`job/${this.props.id}`}>{this.props.title}</Link>
                 <p> {this.props.company} - {this.props.location} </p>
-            </div>   
+            </div>
         );
     }
 }
