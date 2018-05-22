@@ -107,8 +107,15 @@ header {
             form {
                 flex: 1;
                 text-align: right;
-                margin: $padding;
                 display: none;
+
+                input.jb-search {
+                    font-size: 0.6em;
+                    font-family: inherit;
+                    color: $gray-color;
+                    background: rgba(255, 239, 167, 0.5);
+                    border: none;
+                }
             }
 
             button {
@@ -125,9 +132,7 @@ header {
                 
                 a {
                     flex: 0 0 100%;
-                    display: list-item;
                     text-align: center;
-                    list-style-type: none;
                     &:hover {
                         color: #756c45;
                     }    
@@ -311,33 +316,59 @@ footer {
 @media (min-width: $media-sm) {
     header {
         .jb-row {
-            .jb-nav-wrapper form {
-                display: block;
+            .jb-nav-wrapper {
+                form {
+                    display: block;
+                    margin: $padding;
+                    input.jb-search {
+                        font-size: 1.2em;
+                    }
+                }
             }
         }
     }
 }
 
 @media (min-width: $media-md) {
-    header.jb-expand {
-
-        .jb-row .jb-logo {
-            .jb-title {
-                font-size: 4em;
+    header, header.jb-job-header {
+        .jb-row .jb-nav-wrapper {
+            button {
+                display: none;
             }
-            .fa-5x {
-                font-size: 10em;
+            .jb-nav {
+                top: 0;
+                display: block;
+                position: relative;
+
+                a {
+                    font-size: 1.5em;
+                    border: none;
+                    display: initial;
+                }
             }
         }
     }
-    
 }
+
 @media (min-width: $media-lg) {
     header {
+        &.jb-expand {
+            .jb-row {
+                .jb-logo {
+                    .jb-title {
+                        font-size: 4em;
+                    }
+                    .fa-5x {
+                        font-size: 10em;
+                    }
+                }
+            }
+        }
         &.jb-job-header {
             display: block;
         }
     }
+
     main.jb-main {
         width: 100%;
         margin: $padding auto;

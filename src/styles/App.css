@@ -76,8 +76,13 @@ header {
       header .jb-row .jb-nav-wrapper form {
         flex: 1;
         text-align: right;
-        margin: 0.5em;
         display: none; }
+        header .jb-row .jb-nav-wrapper form input.jb-search {
+          font-size: 0.6em;
+          font-family: inherit;
+          color: #444;
+          background: rgba(255, 239, 167, 0.5);
+          border: none; }
       header .jb-row .jb-nav-wrapper button {
         margin: 0.5em;
         padding: 1em; }
@@ -89,9 +94,7 @@ header {
         z-index: 1004; }
         header .jb-row .jb-nav-wrapper .jb-nav a {
           flex: 0 0 100%;
-          display: list-item;
-          text-align: center;
-          list-style-type: none; }
+          text-align: center; }
           header .jb-row .jb-nav-wrapper .jb-nav a:hover {
             color: #756c45; }
           header .jb-row .jb-nav-wrapper .jb-nav a:first-of-type {
@@ -204,13 +207,26 @@ footer {
 
 @media (min-width: 576px) {
   header .jb-row .jb-nav-wrapper form {
-    display: block; } }
+    display: block;
+    margin: 0.5em; }
+    header .jb-row .jb-nav-wrapper form input.jb-search {
+      font-size: 1.2em; } }
 @media (min-width: 768px) {
+  header .jb-row .jb-nav-wrapper button, header.jb-job-header .jb-row .jb-nav-wrapper button {
+    display: none; }
+  header .jb-row .jb-nav-wrapper .jb-nav, header.jb-job-header .jb-row .jb-nav-wrapper .jb-nav {
+    top: 0;
+    display: block;
+    position: relative; }
+    header .jb-row .jb-nav-wrapper .jb-nav a, header.jb-job-header .jb-row .jb-nav-wrapper .jb-nav a {
+      font-size: 1.5em;
+      border: none;
+      display: initial; } }
+@media (min-width: 992px) {
   header.jb-expand .jb-row .jb-logo .jb-title {
     font-size: 4em; }
   header.jb-expand .jb-row .jb-logo .fa-5x {
-    font-size: 10em; } }
-@media (min-width: 992px) {
+    font-size: 10em; }
   header.jb-job-header {
     display: block; }
 

@@ -9,6 +9,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../styles/App.css';
 
 import Home from './Home';
+import About from './About';
 import JobsMap from './JobsMap';
 import JobDetail from './JobDetail';
 
@@ -92,6 +93,10 @@ class App extends Component {
                     
                     <Route exact path="/" render={() =>
                         this.state.formSearch ? <Redirect push to="/jobs" /> : <Home onSearch={this.onSearch} />
+                    }/>
+
+                    <Route path="/about" render={() =>
+                        this.state.formSearch ? <Redirect push to="/jobs" /> : <About onSearch={this.onSearch} />
                     }/>
 
                     <Route path="/job/:jobId" render={({match}) => 
