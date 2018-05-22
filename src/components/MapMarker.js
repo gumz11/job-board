@@ -28,7 +28,7 @@ class MapMarker extends React.Component {
         if (lat && lng) {
             let marker = L.marker([lat, lng], {
                 id: this.props.id
-            }).setIcon(this.markerIcon).bindPopup(this.popup.current.cloneNode(true));
+            }).setIcon(this.markerIcon).bindPopup(this.popup.current);
 
             group.addLayer(marker);
         }
@@ -36,9 +36,11 @@ class MapMarker extends React.Component {
 
     render() {
         return (
-            <div className='jb-control' ref={this.popup}>
-                <Link to={`/job/${this.props.id}`}>{this.props.title}</Link>
-                <p> {this.props.company} - {this.props.location} </p>
+            <div className='jb-popup'>
+                <div ref={this.popup}>
+                    <Link to={`/job/${this.props.id}`}>{this.props.title}</Link>
+                    <p> {this.props.company} - {this.props.location} </p>
+                </div>
             </div>
         );
     }

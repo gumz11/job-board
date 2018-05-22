@@ -185,7 +185,7 @@ main .jb-controls {
       margin-top: 0.5em; }
 main #map {
   color: black; }
-  main #map ~ .jb-control {
+  main #map ~ .jb-popup {
     display: none; }
   main #map .leaflet-popup-content p {
     margin: 0; }
