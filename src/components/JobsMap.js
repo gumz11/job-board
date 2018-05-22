@@ -20,7 +20,7 @@ class JobsMap extends React.Component {
 
         this.state = { 
             header: 'hidden', 
-            aside: {
+            section: {
                 display: '',
                 icon: 'left'   
             }, 
@@ -36,11 +36,11 @@ class JobsMap extends React.Component {
 
     asideControl = () => {
         this.setState(prevState => ({
-            aside: prevState.aside.display ? {
+            section: prevState.section.display ? {
                 display: '',
                 icon: 'left'
             } : {
-                display: 'fixed',
+                display: 'hidden',
                 icon: 'right'
             }
         }));
@@ -125,9 +125,9 @@ class JobsMap extends React.Component {
                     {(this.props.searching || this.props.error) && <JobsMessage error={this.props.error}/>}
                     <div className="jb-controls">
                         <JobsControl icon="search" control={this.headerControl} />
-                        <JobsControl icon={`angle-double-${this.state.aside.icon}`} control={this.asideControl} />
+                        <JobsControl icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} />
                     </div>
-                    <section className="jb-fill jb-column">
+                    <section className={`jb-fill jb-column jb-${this.state.section.display}`}>
                         <div className="jb-fill" id="map">
                         </div>
                         {this.state.map && 
@@ -139,7 +139,7 @@ class JobsMap extends React.Component {
                             </React.Fragment>
                         }
                     </section>
-                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} display={this.state.aside.display} />
+                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
                 </main>
 
             </React.Fragment>

@@ -75,8 +75,9 @@ header {
       position: relative; }
       header .jb-row .jb-nav-wrapper form {
         flex: 1;
-        text-align: right;
-        display: none; }
+        display: none;
+        justify-content: flex-end;
+        align-items: center; }
         header .jb-row .jb-nav-wrapper form input.jb-search {
           font-size: 0.6em;
           font-family: inherit;
@@ -102,7 +103,7 @@ header {
       header .jb-row .jb-nav-wrapper .jb-nav-visible {
         display: flex; }
   header.jb-job-header .jb-row .jb-nav-wrapper form {
-    display: block; }
+    display: flex; }
   header.jb-job-header .jb-row .jb-nav-wrapper button, header.jb-job-header .jb-row .jb-nav-wrapper nav {
     display: none; }
 
@@ -146,21 +147,20 @@ main .jb-message {
   100% {
     transform: rotate(360deg); } }
 main section.jb-fill {
-  flex: 3; }
+  flex: 1; }
+  main section.jb-fill.jb-hidden {
+    display: none; }
+    main section.jb-fill.jb-hidden ~ aside {
+      flex: 100%;
+      margin: 0;
+      display: block; }
 main aside {
   display: none;
-  flex: 1;
-  margin-left: 0.5em;
+  z-index: 1001;
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 0.8em;
   background-color: #353223; }
-  main aside.jb-fixed {
-    z-index: 1001;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    display: block; }
   main aside table {
     width: 100%;
     color: #eee;
@@ -207,7 +207,7 @@ footer {
 
 @media (min-width: 576px) {
   header .jb-row .jb-nav-wrapper form {
-    display: block;
+    display: flex;
     margin: 0.5em; }
     header .jb-row .jb-nav-wrapper form input.jb-search {
       font-size: 1.2em; } }
@@ -236,12 +236,16 @@ footer {
     max-width: 1440px; }
     main.jb-main .jb-message {
       margin-top: -0.5em; }
-    main.jb-main .jb-controls .jb-btn {
-      display: none; }
-    main.jb-main aside {
-      display: block; }
-      main.jb-main aside.jb-fixed {
-        position: initial;
-        margin-left: 0.5em; } }
+    main.jb-main .jb-controls .jb-btn:first-of-type {
+      display: none; } }
+@media (min-width: 1200px) {
+  main.jb-main .jb-controls .jb-btn {
+    display: none; }
+  main.jb-main section.jb-fill, main.jb-main section.jb-fill.jb-hidden {
+    display: inherit; }
+    main.jb-main section.jb-fill ~ aside, main.jb-main section.jb-fill.jb-hidden ~ aside {
+      flex: 0 0 380px;
+      margin-left: 0.5em;
+      display: block; } }
 
 /*# sourceMappingURL=app.css.map */
