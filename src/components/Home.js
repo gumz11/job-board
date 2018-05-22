@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Header from './Header';
 import HomeBanner from './HomeBanner';
 import HomeIcon from './HomeIcon';
 import HomeFill from './HomeFill';
@@ -15,7 +14,6 @@ class Home extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header className="jb-expand" display='fixed' onSearch={this.props.onSearch} />
                 <main>
                     <HomeFill screen={screen4} />
                     <HomeBanner>

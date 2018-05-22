@@ -7,7 +7,6 @@ import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 
-import Header from './Header';
 import JobsMessage from './JobsMessage';
 import MapLayer from './MapLayer';
 import JobsControl from './JobsControl';
@@ -19,19 +18,13 @@ class JobsMap extends React.Component {
         super(props);
 
         this.state = { 
-            header: 'hidden', 
             section: {
                 display: '',
                 icon: 'left'   
             }, 
-            map: null };
+            map: null 
+        };
         this.group = L.markerClusterGroup();
-    }
-
-    headerControl = () => {
-        this.setState(prevState => ({
-            header: prevState.header ? '' : 'hidden'
-        }));
     }
 
     asideControl = () => {
@@ -56,7 +49,7 @@ class JobsMap extends React.Component {
             });
         }
 
-        if (this.state.aside.display) {
+        if (this.state.section.display) {
             this.asideControl();
         }
     }
@@ -113,18 +106,9 @@ class JobsMap extends React.Component {
     render() {
         return (
             <React.Fragment>
-
-                <Header className="jb-job-header" 
-                    nav="hidden" 
-                    display={this.state.header} 
-                    onSearch={this.props.onSearch}
-                    formSearch={this.props.formSearch} 
-                    searching={this.props.searching} />
-
                 <main className="jb-main jb-fill jb-row">
                     {(this.props.searching || this.props.error) && <JobsMessage error={this.props.error}/>}
                     <div className="jb-controls">
-                        <JobsControl icon="search" control={this.headerControl} />
                         <JobsControl icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} />
                     </div>
                     <section className={`jb-fill jb-column jb-${this.state.section.display}`}>
@@ -141,7 +125,6 @@ class JobsMap extends React.Component {
                     </section>
                     <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
                 </main>
-
             </React.Fragment>
         );
     }

@@ -1,11 +1,9 @@
 import React from 'react';
 
-import Header from "./Header";
 import JobsMessage from './JobsMessage';
 
 const JobsDetail = (props) => (
     <React.Fragment>
-        <Header onSearch={props.onSearch} />
         <main className="jb-fill jb-row">
             {props.searching ? <JobsMessage /> : !props.job  && <JobsMessage error="Job not found." /> }
             <section className="jb-main jb-content">
