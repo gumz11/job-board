@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, p, a {
 a {
   font-weight: bold;
   text-decoration: none;
-  color: #eee;
+  color: #0078A8;
   transition: color 0.2s ease-out; }
 
 .jb-hidden {
@@ -120,6 +120,7 @@ main .jb-icon {
     padding: 0.5em; }
 main .jb-message {
   position: fixed;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,6 +189,9 @@ main #map {
 main section.jb-main {
   padding: 0.5em;
   margin: 0 auto; }
+  main section.jb-main h1, main section.jb-main h4, main section.jb-main h5, main section.jb-main div.jb-html {
+    padding: 0.5em;
+    background-color: #444; }
 
 footer {
   border-top: 2px solid black;
@@ -195,6 +199,8 @@ footer {
   width: 100%; }
   footer div {
     flex: 1; }
+  footer a {
+    color: #eee; }
 
 @media (min-width: 576px) {
   header .jb-row .jb-nav-wrapper form {

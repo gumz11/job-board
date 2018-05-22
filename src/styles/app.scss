@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, p, a {
 a {
     font-weight: bold;
     text-decoration: none;
-    color: $white-color;
+    color: #0078A8;
     transition: color 0.2s ease-out;
 }
 
@@ -182,6 +182,7 @@ main {
 
     .jb-message {
         position: fixed;
+        left: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -286,6 +287,11 @@ main {
     section.jb-main {
         padding: $padding;
         margin: 0 auto;
+
+        h1, h4, h5, div.jb-html {
+            padding: $padding;
+            background-color: $gray-color;
+        }
     }
 
 }
@@ -297,7 +303,9 @@ footer {
     div {
         flex: 1;
     }
-
+    a {
+        color: $white-color;
+    }
 }
 
 @media (min-width: $media-sm) {
