@@ -27,7 +27,7 @@ class JobsMap extends React.Component {
         this.group = L.markerClusterGroup();
     }
 
-    asideControl = () => {
+    asideControl = (cb) => {
         this.setState(prevState => ({
             section: prevState.section.display ? {
                 display: '',
@@ -36,7 +36,7 @@ class JobsMap extends React.Component {
                 display: 'hidden',
                 icon: 'right'
             }
-        }));
+        }), typeof cb === 'function' ? cb : undefined);
     }
 
     onSidebarClick = (markerData) => {
@@ -44,14 +44,21 @@ class JobsMap extends React.Component {
             marker = markers.find((m) => m.options.id === markerData.id);
 
         if (marker) {
-            this.centerMap(marker.__parent.getBounds(), () => {
-                this.recursiveZoomOrSpiderfy(marker);
-            });
+            if (this.state.section.display) {
+                this.asideControl(() => {
+                    this.state.map.invalidateSize();
+                    this.centerAndOpenPopup(marker);
+                });
+            } else {
+                this.centerAndOpenPopup(marker);
+            }
         }
+    }
 
-        if (this.state.section.display) {
-            this.asideControl();
-        }
+    centerAndOpenPopup(marker) {
+        this.centerMap(marker.__parent.getBounds(), () => {
+            this.recursiveZoomOrSpiderfy(marker);
+        });
     }
 
     recursiveZoomOrSpiderfy(marker) {
@@ -83,8 +90,6 @@ class JobsMap extends React.Component {
         if (this.props.jobs.length === 0) {
             this.group.clearLayers();
         }
-
-        this.state.map.invalidateSize();
     }
     
     componentDidMount() {       
