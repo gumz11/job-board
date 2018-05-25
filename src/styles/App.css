@@ -11,14 +11,13 @@ h1, h2, h3, h4, h5, p, a {
 a {
   font-weight: bold;
   text-decoration: none;
-  color: #0078A8;
+  color: #f5d02a;
   transition: color 0.2s ease-out; }
+  a:hover {
+    color: #eee; }
 
 .jb-hidden {
   display: none; }
-
-.jb-fixed {
-  position: fixed; }
 
 .jb-row {
   display: flex;
@@ -37,7 +36,7 @@ a {
   flex: 1; }
 
 .jb-content {
-  max-width: 1000px;
+  max-width: 1200px;
   font-size: 0.9em; }
 
 .jb-btn {
@@ -54,6 +53,8 @@ header {
   color: #353223;
   border-bottom: 2px solid #353223; }
   header .jb-row {
+    margin: 0 auto;
+    max-width: 1440px;
     align-items: center;
     flex-wrap: nowrap; }
     header .jb-row .jb-logo {
@@ -121,9 +122,45 @@ main .jb-banner {
   border-right: none;
   border-left: none;
   background-color: #444;
-  padding: 25px; }
+  padding: 5px; }
+  main .jb-banner .jb-top {
+    width: 100%;
+    justify-content: center;
+    font-size: 2em; }
+    main .jb-banner .jb-top .jb-left {
+      flex: 0 0 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1em 0; }
+      main .jb-banner .jb-top .jb-left h1, main .jb-banner .jb-top .jb-left h2, main .jb-banner .jb-top .jb-left h5 {
+        font-weight: normal; }
+    main .jb-banner .jb-top .jb-right {
+      flex: 0 0 400px;
+      padding: 1em 0;
+      color: #f5d02a;
+      animation: rotate 3s ease-in-out infinite alternate paused; }
+      main .jb-banner .jb-top .jb-right:hover {
+        animation-play-state: running; }
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(720deg);
+    color: #444; } }
+    main .jb-banner .jb-top.jb-next {
+      padding: 1em 0; }
+  main .jb-banner .jb-quote {
+    font-size: 1.5em;
+    max-width: 768px; }
+    main .jb-banner .jb-quote p:first-child {
+      font-style: italic;
+      padding: 1em 1em 0; }
+    main .jb-banner .jb-quote p:nth-child(2) {
+      padding: 0 0 1em;
+      text-align: right; }
 main .jb-icon {
-  padding: 15px;
+  padding: 2em 0;
   max-width: 300px; }
   main .jb-icon h4 {
     padding: 0.5em; }
@@ -139,7 +176,7 @@ main .jb-message {
   height: 100%;
   text-align: center; }
   main .jb-message h2 {
-    color: #fd2c2c;
+    color: #f5d02a;
     background-color: rgba(0, 0, 0, 0.7);
     max-width: 576px;
     margin: 0 auto; }
@@ -201,12 +238,10 @@ main section.jb-main {
 
 footer {
   border-top: 2px solid black;
-  padding: 50px 0.5em;
+  padding: 2em;
   width: 100%; }
   footer div {
     flex: 1; }
-  footer a {
-    color: #eee; }
 
 @media (min-width: 576px) {
   header .jb-row .jb-logo .fa-5x {
@@ -220,7 +255,18 @@ footer {
   header .jb-row .jb-nav-wrapper button, header .jb-row .jb-nav-wrapper nav {
     display: flex; }
     header .jb-row .jb-nav-wrapper button.jb-nav-visible, header .jb-row .jb-nav-wrapper nav.jb-nav-visible {
-      display: flex; } }
+      display: flex; }
+
+  main .jb-banner {
+    padding: 1em; }
+    main .jb-banner .jb-top {
+      padding: 1em; }
+      main .jb-banner .jb-top .jb-left, main .jb-banner .jb-top .jb-right, main .jb-banner .jb-top.jb-next {
+        padding: 1em; }
+      main .jb-banner .jb-top .jb-right {
+        font-size: 2em; }
+    main .jb-banner .jb-icon {
+      padding: 2em 1em; } }
 @media (min-width: 768px) {
   header .jb-row .jb-nav-wrapper button {
     display: none; }

@@ -25,16 +25,15 @@ h1, h2, h3, h4, h5, p, a {
 a {
     font-weight: bold;
     text-decoration: none;
-    color: #0078A8;
+    color: $main-color;
     transition: color 0.2s ease-out;
+    &:hover {
+        color: $white-color;
+    }
 }
 
 .jb-hidden {
     display: none;
-}
-
-.jb-fixed {
-    position: fixed;
 }
 
 .jb-row {
@@ -58,7 +57,7 @@ a {
 }
 
 .jb-content {
-    max-width: 1000px;
+    max-width: $media-xlg;
     font-size: 0.9em;
 }
 
@@ -78,19 +77,18 @@ header {
     border-bottom: 2px solid $off-color;
     
     .jb-row {
+        margin: 0 auto;
+        max-width: $media-max;
         align-items: center;
         flex-wrap: nowrap;
-
         .jb-logo {
             display: flex;
             padding: $padding;
             align-items: center;
             color: $off-color;
-    
             .fa-5x {
                 font-size: 2em;
             }
-    
             .jb-title {
                 font-size: 1em;
                 padding: 0 0 0 $padding;
@@ -105,14 +103,11 @@ header {
             justify-content: flex-end;
             padding: $padding;
             position: relative;
-
             form {
                 flex: 1;
                 display: flex;
-
                 justify-content: flex-end;
                 align-items: center;
-
                 div { 
                     color: $gray-color;
                     background: rgba(255, 239, 167, 0.5);
@@ -120,7 +115,6 @@ header {
                     &:focus-within {
                         outline: -webkit-focus-ring-color auto 5px;
                     }
-
                     i, input.jb-search {
                         background: transparent;
                         padding: 1px;
@@ -133,23 +127,19 @@ header {
                             outline: none;
                         }
                     }
-                }
-                
+                }   
             }
-
             button {
                 display: none;
                 margin: $padding;
                 padding: 1em;
             }
-
             nav.jb-nav {
                 display: none;
                 flex-wrap: wrap;
                 position: absolute;
                 top: 65px;
                 z-index: 1004;
-                
                 a {
                     flex: 0 0 100%;
                     text-align: center;
@@ -178,11 +168,59 @@ main {
         border-right: none;
         border-left: none;
         background-color: $gray-color;
-        padding: 25px;
+        padding: 5px;
+        .jb-top {
+            width: 100%;
+            justify-content: center;
+            font-size: 2em;
+            .jb-left{
+                flex: 0 0 300px;
+                display: flex; 
+                flex-direction: column;
+                justify-content: center; 
+                padding: 1em 0;
+                h1, h2, h5 {
+                    font-weight: normal;
+                }
+            }
+            .jb-right {
+                flex: 0 0 400px; 
+                padding: 1em 0;
+                color: $main-color;
+                animation: rotate 3s ease-in-out infinite alternate paused;
+                &:hover {
+                    animation-play-state: running;
+                }
+                @keyframes rotate {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(720deg);
+                        color: $gray-color;
+                    }
+                }
+            }
+            &.jb-next {
+                padding: 1em 0;
+            }
+        }
+        .jb-quote {
+            font-size: 1.5em;
+            max-width: $media-md;
+            p:first-child {
+                font-style: italic;
+                padding: 1em 1em 0;
+            }
+            p:nth-child(2) {
+                padding: 0 0 1em;
+                text-align: right;
+            }
+        }
     }
 
     .jb-icon {
-        padding: 15px;
+        padding: 2em 0;
         max-width: 300px;
         h4 {
             padding: $padding;
@@ -200,19 +238,16 @@ main {
         width: 100%;
         height: 100%;
         text-align: center;
-
         h2 {
-            color: #fd2c2c;
+            color: $main-color;
             background-color: rgba(0,0,0,0.7);
             max-width: $media-sm;
             margin: 0 auto;
         }
-
         i.fa-spinner {
             color: $main-color;
             animation: spin 1.5s ease-out infinite;
         }
-
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -225,7 +260,6 @@ main {
 
     section.jb-fill {
         flex: 1;
-
         &.jb-hidden {
             display: none;
             ~ aside {
@@ -238,29 +272,24 @@ main {
     
     aside {
         display: none;
-
         z-index: 1001;
         overflow-y: auto;
         overflow-x: hidden;
         font-size: 0.8em;
         background-color: $off-color;
-
         table {
             width: 100%;
             color: $white-color;
             background-color: $gray-color;
             border-collapse: collapse;
             text-align: left;
-            
             th, td {
                 padding: 5px;
                 border-top: 1px solid gray;
             }
-            
             thead th {
                 border-bottom: 2px solid gray;
             }
-
             tbody tr:hover {
                 background-color: #555;
             }
@@ -272,7 +301,6 @@ main {
         position: fixed;
         right: 0;
         margin: $padding;
-
         .jb-btn {
             text-align: center;
         }
@@ -280,11 +308,9 @@ main {
 
     #map {
         color: black;
-        
         ~ .jb-popup {
             display: none;
         }
-
         .leaflet-popup-content p {
             margin: 0;
         }
@@ -293,7 +319,6 @@ main {
     section.jb-main {
         padding: $padding;
         margin: 0 auto;
-
         h1, h4, h5, div.jb-html {
             padding: $padding;
             background-color: $gray-color;
@@ -304,13 +329,10 @@ main {
 
 footer {
     border-top: 2px solid black;
-    padding: 50px $padding;
+    padding: 2em;
     width: 100%;
     div {
         flex: 1;
-    }
-    a {
-        color: $white-color;
     }
 }
 
@@ -328,11 +350,9 @@ footer {
             .jb-nav-wrapper {
                 form {
                     margin: $padding;
-                    
                     div {
                         i, input.jb-search {
                             font-size: 1.2em;
-
                         }
                     }
                 }
@@ -343,6 +363,21 @@ footer {
                     }
                 }
             }
+        }
+    }
+    main .jb-banner {
+        padding: 1em;
+        .jb-top {
+            padding: 1em;
+            .jb-left, .jb-right, &.jb-next {
+                padding: 1em;
+            }
+            .jb-right {
+                font-size: 2em;
+            }
+        }
+        .jb-icon {
+            padding: 2em 1em;
         }
     }
 }
@@ -357,7 +392,6 @@ footer {
                 top: 0;
                 display: block;
                 position: relative;
-
                 a {
                     font-size: 1.5em;
                     border: none;
@@ -373,7 +407,6 @@ footer {
         width: 100%;
         margin: $padding auto;
         max-width: $media-max;
-
         .jb-message {
             margin-top: -0.5em;
         }

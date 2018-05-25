@@ -9,7 +9,7 @@ const Footer = (props) => {
                     <Link to="/about"> About </Link> 
                 </div>
                 <div>
-                    <a><i className="fa fa-copyright"></i> Job Board </a>
+                    <i className="fa fa-copyright"></i> Job Board
                 </div>
             </div>
         </footer>
