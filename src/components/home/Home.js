@@ -5,8 +5,8 @@ import Icon from './Icon';
 import Fill from './Fill';
 import Footer from '../Footer';
 
-import screen2 from '../../images/screen2.jpg';
-import screen3 from '../../images/screen3.jpg';
+import jpg1 from '../../images/nathan-dumlao-609929-unsplash.jpg';
+import jpg2 from '../../images/rawpixel-679092-unsplash.jpg';
 
 const Home = () => (
     <React.Fragment>
@@ -39,7 +39,7 @@ const Home = () => (
                     <a href="https://jobs.github.com/"> Jobs</a>.
                 </Icon>
             </Banner>
-            <Fill screen={screen2} />
+            <Fill screen={jpg1} photographer="nate_dumlao" />
             <Banner>
                 <div className="jb-center jb-quote">
                     <p>
@@ -49,7 +49,7 @@ const Home = () => (
                     <p> - Andrew </p>
                 </div>
             </Banner>
-            <Fill screen={screen3} />
+            <Fill screen={jpg2} photographer="rawpixel" />
         </main>
         <Footer />
     </React.Fragment>
