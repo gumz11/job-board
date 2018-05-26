@@ -1,6 +1,6 @@
 import React from 'react';
 
-const JobsSidebar = (props) => (
+const Sidebar = (props) => (
     <aside>
         <table>
             <thead>
@@ -23,6 +23,6 @@ const JobsSidebar = (props) => (
     </aside>
 );
 
-export default JobsSidebar;
+export default Sidebar;
 
 

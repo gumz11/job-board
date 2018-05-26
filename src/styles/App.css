@@ -8,12 +8,12 @@ h1, h2, h3, h4, h5, p, a {
   margin: 0;
   padding: 0; }
 
-a {
+a, .leaflet-container a {
   font-weight: bold;
   text-decoration: none;
   color: #f5d02a;
   transition: color 0.2s ease-out; }
-  a:hover {
+  a:hover, .leaflet-container a:hover {
     color: #eee; }
 
 .jb-hidden {
@@ -152,7 +152,8 @@ main .jb-banner {
       padding: 1em 0; }
   main .jb-banner .jb-quote {
     font-size: 1.5em;
-    max-width: 768px; }
+    max-width: 768px;
+    padding: 1em 0; }
     main .jb-banner .jb-quote p:first-child {
       font-style: italic;
       padding: 1em 1em 0; }
@@ -227,12 +228,29 @@ main #map {
   color: black; }
   main #map ~ .jb-popup {
     display: none; }
-  main #map .leaflet-popup-content p {
-    margin: 0; }
+  main #map .leaflet-popup-content-wrapper, main #map .leaflet-popup-tip {
+    color: #eee;
+    background: #444; }
+    main #map .leaflet-popup-content-wrapper .leaflet-popup-content, main #map .leaflet-popup-tip .leaflet-popup-content {
+      padding: 0.5em; }
+      main #map .leaflet-popup-content-wrapper .leaflet-popup-content p, main #map .leaflet-popup-tip .leaflet-popup-content p {
+        margin: 0; }
+    main #map .leaflet-popup-content-wrapper a, main #map .leaflet-popup-tip a {
+      color: #f5d02a; }
+      main #map .leaflet-popup-content-wrapper a:hover, main #map .leaflet-popup-tip a:hover {
+        color: #eee; }
+  main #map div.jb-map-icon i {
+    color: #f5d02a;
+    text-shadow: 0px 0px 15px #444; }
+  main #map .marker-cluster-small, main #map .marker-cluster-large {
+    background-color: rgba(241, 211, 87, 0.6); }
+    main #map .marker-cluster-small div, main #map .marker-cluster-large div {
+      background-color: rgba(240, 194, 12, 0.6); }
 main section.jb-main {
   padding: 0.5em;
   margin: 0 auto; }
-  main section.jb-main h1, main section.jb-main h4, main section.jb-main h5, main section.jb-main div.jb-html {
+  main section.jb-main h1, main section.jb-main h4, main section.jb-main h5, main section.jb-main div.jb-html, main section.jb-main .jb-about p {
+    font-size: 1.2em;
     padding: 0.5em;
     background-color: #444; }
 
@@ -277,7 +295,10 @@ footer {
     header .jb-row .jb-nav-wrapper nav.jb-nav a, header .jb-row .jb-nav-wrapper nav.jb-nav-visible a {
       font-size: 1.5em;
       border: none;
-      display: initial; } }
+      display: initial; }
+
+  main .jb-banner .jb-top.jb-next {
+    padding-bottom: 3em; } }
 @media (min-width: 992px) {
   main.jb-main {
     width: 100%;

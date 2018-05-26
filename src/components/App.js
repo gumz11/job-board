@@ -8,10 +8,10 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../styles/App.css';
 
 import Header from './Header';
-import Home from './Home';
+import Home from './home/Home';
 import About from './About';
-import JobsMap from './JobsMap';
-import JobDetail from './JobDetail';
+import Map from './jobs/Map';
+import Detail from './jobs/Detail';
 
 class App extends Component {
     constructor(props) {
@@ -98,12 +98,12 @@ class App extends Component {
                     <Route path="/about" component={About} />
 
                     <Route path="/job/:jobId" render={({match}) => 
-                            <JobDetail searching={this.state.searching} 
-                                    job={this.state.jobs.find((j) => j.id === match.params.jobId)} />
+                        <Detail searching={this.state.searching} 
+                                job={this.state.jobs.find((j) => j.id === match.params.jobId)} />
                     }/>
 
                     <Route path="/jobs" render={() => 
-                        <JobsMap searching={this.state.searching} 
+                        <Map searching={this.state.searching} 
                             jobs={this.state.jobs} 
                             error={this.state.error} />
                     }/>

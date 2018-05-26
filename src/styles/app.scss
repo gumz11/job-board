@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, p, a {
     padding: 0;
 }
 
-a {
+a, .leaflet-container a {
     font-weight: bold;
     text-decoration: none;
     color: $main-color;
@@ -208,6 +208,7 @@ main {
         .jb-quote {
             font-size: 1.5em;
             max-width: $media-md;
+            padding: 1em 0;
             p:first-child {
                 font-style: italic;
                 padding: 1em 1em 0;
@@ -311,15 +312,39 @@ main {
         ~ .jb-popup {
             display: none;
         }
-        .leaflet-popup-content p {
-            margin: 0;
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            color: $white-color;
+            background: $gray-color;
+            .leaflet-popup-content {
+                padding: $padding;
+                p {
+                    margin: 0;
+                }
+            }
+            a {
+                color: $main-color;
+                &:hover {
+                    color: $white-color;
+                }
+            }
         }
+        div.jb-map-icon i {
+            color: $main-color;
+            text-shadow: 0px 0px 15px $gray-color;
+        }
+        .marker-cluster-small, .marker-cluster-large {
+            background-color: rgba(241, 211, 87, 0.6);
+            div {
+                background-color: rgba(240, 194, 12, 0.6);
+            }
+        } 
     }
 
     section.jb-main {
         padding: $padding;
         margin: 0 auto;
-        h1, h4, h5, div.jb-html {
+        h1, h4, h5, div.jb-html, .jb-about p {
+            font-size: 1.2em;
             padding: $padding;
             background-color: $gray-color;
         }
@@ -399,6 +424,9 @@ footer {
                 }
             }
         }
+    }
+    main .jb-banner .jb-top.jb-next {
+        padding-bottom: 3em;
     }
 }
 

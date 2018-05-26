@@ -27,10 +27,9 @@ class Header extends React.Component {
                             <form onSubmit={(e) => this.props.onSearch(e, this.state.value, history)}>
                                 <div>
                                     <i className="fa fa-search"></i>
-                                    <input className="fa jb-search" 
+                                    <input className="jb-search" 
                                             value={this.state.value}
                                             placeholder="Search jobs"
-                                            name="jb-search" 
                                             onChange={this.handleChange}
                                             disabled={this.props.searching} />
                                 </div>

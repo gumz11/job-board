@@ -2,21 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import L from 'leaflet';
 
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
 class MapMarker extends React.Component {
     constructor(props) {
         super(props);
 
-        this.markerIcon = L.icon({ 
-            iconUrl: markerIcon, 
-            iconSize: [25, 41],
-            iconAnchor: [13.5, 40],
+        this.icon = L.divIcon({ 
+            className: 'jb-map-icon',
+            html: '<i class="fa fa-map-marker fa-3x"></i>',
+            iconSize: [20, 36],
+            iconAnchor: [10, 34],
             popupAnchor: [0, -25],
-            shadowUrl: markerShadow,
-            shadowSize: [41, 41]
         });
+
         this.popup = React.createRef();
     }
 
@@ -27,8 +24,9 @@ class MapMarker extends React.Component {
 
         if (lat && lng) {
             let marker = L.marker([lat, lng], {
-                id: this.props.id
-            }).setIcon(this.markerIcon).bindPopup(this.popup.current);
+                id: this.props.id,
+                icon: this.icon
+            }).bindPopup(this.popup.current);
 
             group.addLayer(marker);
         }

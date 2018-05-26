@@ -7,6 +7,8 @@ class MapLayer extends React.Component {
             styles: [
                 {featureType: 'water', stylers: [{color: '#444444'}]},
                 {featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
+                {featureType: 'poi', stylers: [{visibility: 'off'}]},
+                {featureType: 'road.highway', elementType: 'geometry', stylers: [{color: '#dddddd'}]}
             ],
             type: 'roadmap'
         }).addTo(this.props.map);

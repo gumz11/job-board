@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomeIcon = (props) => {
+const Icon = (props) => {
     return (
         <div className="jb-icon jb-center">
             <i className={`fa fa-${props.type} fa-5x`}></i>        
@@ -9,4 +9,4 @@ const HomeIcon = (props) => {
     );
 }
 
-export default HomeIcon;
+export default Icon;

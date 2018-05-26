@@ -1,17 +1,17 @@
 import React from 'react';
 
-import HomeBanner from './HomeBanner';
-import HomeIcon from './HomeIcon';
-import HomeFill from './HomeFill';
-import Footer from './Footer';
+import Banner from './Banner';
+import Icon from './Icon';
+import Fill from './Fill';
+import Footer from '../Footer';
 
-import screen2 from '../images/screen2.jpg';
-import screen3 from '../images/screen3.jpg';
+import screen2 from '../../images/screen2.jpg';
+import screen3 from '../../images/screen3.jpg';
 
 const Home = () => (
     <React.Fragment>
         <main>
-            <HomeBanner>
+            <Banner>
                 <div className="jb-row jb-top">
                     <div className="jb-left">
                         <h1>Job viewing</h1>
@@ -26,21 +26,21 @@ const Home = () => (
                 <div className="jb-row jb-top jb-next">
                     <p> View jobs on a map in <a> any </a> modern browser. Oh yea. </p>
                 </div>
-                <HomeIcon type="google">
-                    Map layer and Geocoding provided by Google Maps
+                <Icon type="google">
+                    The map tile layer and Geocoding from the Google Maps
                     <a href="https://cloud.google.com/maps-platform/"> Platform</a>.
-                </HomeIcon>
-                <HomeIcon type="leaf">
-                    Mobile-friendly interactive Maps library provided 
-                    by <a href="https://leafletjs.com/"> Leaflet</a>.
-                </HomeIcon>
-                <HomeIcon type="github">
-                    The best jobs provided by GitHub 
+                </Icon>
+                <Icon type="leaf">
+                    Using the mobile-friendly interactive Maps library, 
+                     <a href="https://leafletjs.com/"> Leaflet</a>.
+                </Icon>
+                <Icon type="github">
+                    Showing the best jobs in tech found at GitHub 
                     <a href="https://jobs.github.com/"> Jobs</a>.
-                </HomeIcon>
-            </HomeBanner>
-            <HomeFill screen={screen2} />
-            <HomeBanner>
+                </Icon>
+            </Banner>
+            <Fill screen={screen2} />
+            <Banner>
                 <div className="jb-center jb-quote">
                     <p>
                         "If you aren't already excited to search, enjoy these background images.
@@ -48,8 +48,8 @@ const Home = () => (
                     </p>
                     <p> - Andrew </p>
                 </div>
-            </HomeBanner>
-            <HomeFill screen={screen3} />
+            </Banner>
+            <Fill screen={screen3} />
         </main>
         <Footer />
     </React.Fragment>

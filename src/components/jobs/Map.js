@@ -7,11 +7,11 @@ import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js';
 import 'leaflet/dist/leaflet.css';
 
-import JobsMessage from './JobsMessage';
+import Message from './Message';
 import MapLayer from './MapLayer';
-import JobsControl from './JobsControl';
+import Control from './Control';
 import MapMarker from './MapMarker';
-import JobsSidebar from './JobsSidebar';
+import Sidebar from './Sidebar';
 
 class JobsMap extends React.Component {
     constructor(props) {
@@ -112,9 +112,9 @@ class JobsMap extends React.Component {
         return (
             <React.Fragment>
                 <main className="jb-main jb-fill jb-row">
-                    {(this.props.searching || this.props.error) && <JobsMessage error={this.props.error}/>}
+                    <Message searching={this.props.searching} error={this.props.error} />
                     <div className="jb-controls">
-                        <JobsControl icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} />
+                        <Control icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} />
                     </div>
                     <section className={`jb-fill jb-column jb-${this.state.section.display}`}>
                         <div className="jb-fill" id="map">
@@ -128,7 +128,7 @@ class JobsMap extends React.Component {
                             </React.Fragment>
                         }
                     </section>
-                    <JobsSidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
+                    <Sidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
                 </main>
             </React.Fragment>
         );
