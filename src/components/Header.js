@@ -24,10 +24,11 @@ class Header extends React.Component {
                     </Link>
                     <div className="jb-nav-wrapper">
                         <Route render={({ history }) => (
-                            <form onSubmit={(e) => this.props.onSearch(e, this.state.value, history)}>
+                            <form action="." onSubmit={(e) => this.props.onSearch(e, this.state.value, history)}>
                                 <div>
                                     <i className="fa fa-search"></i>
                                     <input className="jb-search" 
+                                            name="search"
                                             value={this.state.value}
                                             placeholder="Search jobs"
                                             onChange={this.handleChange}

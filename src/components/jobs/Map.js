@@ -90,6 +90,8 @@ class JobsMap extends React.Component {
         if (this.props.jobs.length === 0) {
             this.group.clearLayers();
         }
+        
+        this.state.map.invalidateSize();
     }
     
     componentDidMount() {       

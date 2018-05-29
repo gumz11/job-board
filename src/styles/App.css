@@ -47,7 +47,6 @@ a, .leaflet-container a {
   padding: 0.5em; }
 
 header {
-  top: 0;
   width: 100%;
   background-color: #f5d02a;
   color: #353223;
@@ -104,6 +103,7 @@ header {
         flex-wrap: wrap;
         position: absolute;
         top: 65px;
+        right: 20px;
         z-index: 1004; }
         header .jb-row .jb-nav-wrapper nav.jb-nav a {
           flex: 0 0 100%;
@@ -128,17 +128,19 @@ main .jb-banner {
     width: 100%;
     justify-content: center;
     font-size: 2em; }
+    main .jb-banner .jb-top .jb-left, main .jb-banner .jb-top .jb-right, main .jb-banner .jb-top.jb-next {
+      padding: 1em;
+      max-width: 100%; }
     main .jb-banner .jb-top .jb-left {
       flex: 0 0 300px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 1em 0; }
+      padding: 1em; }
       main .jb-banner .jb-top .jb-left h1, main .jb-banner .jb-top .jb-left h2, main .jb-banner .jb-top .jb-left h5 {
         font-weight: normal; }
     main .jb-banner .jb-top .jb-right {
       flex: 0 0 400px;
-      padding: 1em 0;
       color: #f5d02a;
       animation: rotate 3s ease-in-out infinite alternate paused; }
       main .jb-banner .jb-top .jb-right:hover {
@@ -149,8 +151,6 @@ main .jb-banner {
   100% {
     transform: rotate(720deg);
     color: #444; } }
-    main .jb-banner .jb-top.jb-next {
-      padding: 1em 0; }
   main .jb-banner .jb-quote {
     font-size: 1.5em;
     max-width: 768px;
@@ -159,7 +159,7 @@ main .jb-banner {
       font-style: italic;
       padding: 1em 1em 0; }
     main .jb-banner .jb-quote p:nth-child(2) {
-      padding: 0 0 1em;
+      padding: 1em;
       text-align: right; }
 main .jb-icon {
   padding: 2em 0;
@@ -204,7 +204,8 @@ main aside {
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 0.8em;
-  background-color: #353223; }
+  background-color: #353223;
+  max-height: 100%; }
   main aside table {
     width: 100%;
     color: #eee;
@@ -225,6 +226,8 @@ main .jb-controls {
   margin: 0.5em; }
   main .jb-controls .jb-btn {
     text-align: center; }
+main.jb-main {
+  overflow: hidden; }
 main #map {
   color: black; }
   main #map ~ .jb-popup {
@@ -263,14 +266,6 @@ footer {
     flex: 1; }
 
 @media (min-width: 576px) {
-  header .jb-row .jb-logo .fa-5x {
-    font-size: 3em; }
-  header .jb-row .jb-logo .jb-title {
-    font-size: 2em; }
-  header .jb-row .jb-nav-wrapper form {
-    margin: 0.5em; }
-    header .jb-row .jb-nav-wrapper form div i, header .jb-row .jb-nav-wrapper form div input.jb-search {
-      font-size: 1.2em; }
   header .jb-row .jb-nav-wrapper button, header .jb-row .jb-nav-wrapper nav {
     display: flex; }
     header .jb-row .jb-nav-wrapper button.jb-nav-visible, header .jb-row .jb-nav-wrapper nav.jb-nav-visible {
@@ -287,16 +282,25 @@ footer {
     main .jb-banner .jb-icon {
       padding: 2em 1em; } }
 @media (min-width: 768px) {
+  header .jb-row .jb-logo .fa-5x {
+    font-size: 3em; }
+  header .jb-row .jb-logo .jb-title {
+    font-size: 2em; }
   header .jb-row .jb-nav-wrapper button {
     display: none; }
   header .jb-row .jb-nav-wrapper nav.jb-nav, header .jb-row .jb-nav-wrapper nav.jb-nav-visible {
     top: 0;
+    right: 0;
     display: block;
     position: relative; }
     header .jb-row .jb-nav-wrapper nav.jb-nav a, header .jb-row .jb-nav-wrapper nav.jb-nav-visible a {
       font-size: 1.5em;
       border: none;
       display: initial; }
+  header .jb-row .jb-nav-wrapper form {
+    margin: 0.5em; }
+    header .jb-row .jb-nav-wrapper form div i, header .jb-row .jb-nav-wrapper form div input.jb-search {
+      font-size: 1.2em; }
 
   main .jb-banner .jb-top.jb-next {
     padding-bottom: 3em; } }
@@ -316,5 +320,12 @@ footer {
       flex: 0 0 380px;
       margin-left: 0.5em;
       display: block; } }
+@media only screen and (max-device-width: 1440px) {
+  main #map .leaflet-google-mutant {
+    z-index: inherit !important; }
+    main #map .leaflet-google-mutant .gm-style {
+      z-index: inherit !important; }
+  main .jb-background {
+    background-attachment: scroll; } }
 
 /*# sourceMappingURL=app.css.map */

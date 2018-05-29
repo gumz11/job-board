@@ -50,8 +50,9 @@ const Home = () => (
                 </div>
             </Banner>
             <Fill screen={jpg2} photographer="rawpixel" />
+            <Footer />
         </main>
-        <Footer />
+        
     </React.Fragment>
 );
 

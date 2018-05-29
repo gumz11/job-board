@@ -38,7 +38,7 @@ class App extends Component {
             error: null
         });
 
-        if (!history.location.pathname.includes('/jobs')) {
+        if (history.location.pathname !== '/jobs') {
             history.push('/jobs');
         }
         this.loopSearch(searchVal, 0);
@@ -71,7 +71,7 @@ class App extends Component {
     }
 
     search(searchVal, page) {
-        let url = `http://localhost/api/jobs?search=${searchVal}&page=${page}`;
+        let url = `/api/jobs?search=${searchVal}&page=${page}`;
 
         return fetch(url)
             .then(r => r.json())
