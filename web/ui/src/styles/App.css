@@ -116,8 +116,7 @@ header {
 main .jb-background {
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  position: relative; }
+  background-attachment: fixed; }
 main .jb-banner {
   border: 2px solid black;
   border-right: none;

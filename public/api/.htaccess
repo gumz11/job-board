@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^api/ JobService.php [NC,L,QSA]
-RewriteRule ^([^?]*)$ JobService.php [NC,L,QSA]
-</IfModule>
