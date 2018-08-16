@@ -21,9 +21,9 @@ class DbWorker {
             $connectionString = "pgsql:host=" . $config['host'];
 
             if (isset($config['port'])) $connectionString .= ";port=" . $config['port'];
-            if (isset($config['path'])) $connectionString .= ";dbname=" . $config['path'];
             if (isset($config['user'])) $connectionString .= ";user=" . $config['user'];
             if (isset($config['pass'])) $connectionString .= ";password=" . $config['pass'];
+            if (isset($config['path'])) $connectionString .= ";dbname=" . ltrim($config["path"], "/");
 
             $this->database = new PDO($connectionString);
             $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
