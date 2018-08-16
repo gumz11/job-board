@@ -4,7 +4,7 @@
   "description": "Job viewing on a map.",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd web/ui && npm install && npm run build"
+    "heroku-postbuild": "gulp"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/gumz11/job-board/issues"
   },
-  "homepage": "https://github.com/gumz11/job-board#readme"
+  "homepage": "https://github.com/gumz11/job-board#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-exec": "^3.0.2",
+    "gulp-install": "^1.1.0",
+    "gulp-replace": "^1.0.0"
+  }
 }
