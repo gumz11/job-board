@@ -24,7 +24,7 @@ class JobsMap extends React.Component {
             },
             refresh: 'hidden',
             map: null,
-            jobs: []
+            jobs: this.props.jobs
         };
         this.group = L.markerClusterGroup();
     }
