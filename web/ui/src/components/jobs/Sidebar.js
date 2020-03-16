@@ -12,7 +12,7 @@ const Sidebar = (props) => (
             </thead>
             <tbody>
                 {props.jobs.map((m, i) => (
-                    <tr key={m.id} onClick={() => props.onClick(m)}>
+                    <tr key={m.id} onClick={() => props.onClick(m)} className={`${m.selected ? 'jb-selected' : ''}`}>
                         <th scope="row"> {i+1} </th>
                         <td> {m.title} </td>
                         <td> {m.location} </td>

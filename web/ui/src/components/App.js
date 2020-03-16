@@ -19,13 +19,16 @@ class App extends Component {
     
         this.state = { 
             jobs: [], 
+            bounds: null,
             searching: true, 
             error: null 
         };
+
+        this.jobs = [];
     }
     
     componentDidMount() {
-        this.loopSearch('', 0);
+        this.loopSearch('', 1);
     }
 
     onSearch = (e, searchVal, history) => {
@@ -41,7 +44,8 @@ class App extends Component {
         if (history.location.pathname !== '/jobs') {
             history.push('/jobs');
         }
-        this.loopSearch(searchVal, 0);
+        this.jobs = [];
+        this.loopSearch(searchVal, 1);
     }
 
     // GitHub Job API is designed to be paged. We just want all results, 
@@ -58,7 +62,11 @@ class App extends Component {
         Promise.all(promises).then((jobs) => {
             // Any array was an empty result; we are done
             if (jobs.find((j) => j && j.length === 0)) {
-                this.setState({ searching: false, error: null });
+                this.setState({ 
+                    searching: false, 
+                    error: null,
+                    jobs: this.jobs
+                });
             } else {
                 this.loopSearch(searchVal, i);
             }
@@ -80,12 +88,15 @@ class App extends Component {
                     throw new Error(jobs.message);
                 }
 
-                this.setState(prevState => ({
-                    jobs: prevState.jobs.concat(jobs)
-                }));
-
+                this.jobs = this.jobs.concat(jobs);
                 return jobs;
             });
+    }
+
+    setBounds = (bounds) => {
+        this.setState({
+            bounds: bounds
+        });
     }
 
     render() {
@@ -103,7 +114,9 @@ class App extends Component {
                     }/>
 
                     <Route path="/jobs" render={() => 
-                        <Map searching={this.state.searching} 
+                        <Map searching={this.state.searching}
+                            setStateBounds={this.setBounds} 
+                            bounds={this.state.bounds}
                             jobs={this.state.jobs} 
                             error={this.state.error} />
                     }/>

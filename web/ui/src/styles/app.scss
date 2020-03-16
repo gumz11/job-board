@@ -287,17 +287,19 @@ main {
             thead th {
                 border-bottom: 2px solid gray;
             }
-            tbody tr:hover {
-                background-color: #555;
+            tbody {
+                tr:hover, tr.jb-selected {
+                    background-color: #555;
+                }
             }
         }
     }
     .jb-controls {
-        z-index: 1002;
-        position: fixed;
+        position: absolute;
         right: 0;
-        margin: $padding;
+        z-index: 1002;
         .jb-btn {
+            margin: $padding;
             text-align: center;
         }
     }
@@ -441,8 +443,11 @@ footer {
 
 @media (min-width: $media-xlg) {
     main.jb-main {
-        .jb-controls .jb-btn {
-            display: none;
+        .jb-controls {
+            right: 380px;
+            .jb-hide-control {
+                display: none;
+            }
         }
         section.jb-fill {
             &, &.jb-hidden {
@@ -453,6 +458,13 @@ footer {
                     display: block;
                 }  
             } 
+        }
+    }
+}
+@media (min-width: $media-max) {
+    main.jb-main {
+        .jb-controls {
+            right: 0;
         }
     }
 }

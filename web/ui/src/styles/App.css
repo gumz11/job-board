@@ -216,14 +216,14 @@ main aside {
       border-top: 1px solid gray; }
     main aside table thead th {
       border-bottom: 2px solid gray; }
-    main aside table tbody tr:hover {
+    main aside table tbody tr:hover, main aside table tbody tr.jb-selected {
       background-color: #555; }
 main .jb-controls {
-  z-index: 1002;
-  position: fixed;
+  position: absolute;
   right: 0;
-  margin: 0.5em; }
+  z-index: 1002; }
   main .jb-controls .jb-btn {
+    margin: 0.5em;
     text-align: center; }
 main.jb-main {
   overflow: hidden; }
@@ -311,14 +311,19 @@ footer {
     main.jb-main .jb-message {
       margin-top: -0.5em; } }
 @media (min-width: 1200px) {
-  main.jb-main .jb-controls .jb-btn {
-    display: none; }
+  main.jb-main .jb-controls {
+    right: 380px; }
+    main.jb-main .jb-controls .jb-hide-control {
+      display: none; }
   main.jb-main section.jb-fill, main.jb-main section.jb-fill.jb-hidden {
     display: inherit; }
     main.jb-main section.jb-fill ~ aside, main.jb-main section.jb-fill.jb-hidden ~ aside {
       flex: 0 0 380px;
       margin-left: 0.5em;
       display: block; } }
+@media (min-width: 1440px) {
+  main.jb-main .jb-controls {
+    right: 0; } }
 @media only screen and (max-device-width: 1440px) {
   main #map .leaflet-google-mutant {
     z-index: inherit !important; }

@@ -20,13 +20,23 @@ class MapMarker extends React.Component {
     componentDidMount() {
         let { lat, 
             lng, 
-            group } = this.props;
+            group,
+            id } = this.props;
 
         if (lat && lng) {
             let marker = L.marker([lat, lng], {
-                id: this.props.id,
+                id: id,
                 icon: this.icon
             }).bindPopup(this.popup.current);
+
+            marker.on('mouseover', () => this.props.onHover(id));
+            marker.on('mouseout', () => {
+                if (!marker.isPopupOpen()) {
+                    this.props.onHover();
+                }
+            });
+            marker.on('popupopen', () => this.props.onHover(id));
+            marker.on('popupclose', () => this.props.onHover());
 
             group.addLayer(marker);
         }

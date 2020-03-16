@@ -21,3 +21,7 @@ gulp.task('insertGoogleKey', () => {
 });
 
 gulp.task('default', gulp.series('install', 'build', 'insertGoogleKey'));
+
+gulp.task('watch', () => {
+    return gulp.watch('web/ui/src/**/*.js', gulp.series('build'))
+});

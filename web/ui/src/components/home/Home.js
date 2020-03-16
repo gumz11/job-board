@@ -24,7 +24,7 @@ const Home = () => (
                     </div>
                 </div>
                 <div className="jb-row jb-top jb-next">
-                    <p> View jobs on a map in <a> any </a> modern browser. Oh yea. </p>
+                    <p> View jobs on a <a> map. </a> Oh yea. </p>
                 </div>
                 <Icon type="google">
                     The map tile layer and Geocoding from the Google Maps
@@ -43,8 +43,7 @@ const Home = () => (
             <Banner>
                 <div className="jb-center jb-quote">
                     <p>
-                        "If you aren't already excited to search, enjoy these background images.
-                        I hope they will get you into job searching mode."
+                        "Enjoy these background images."
                     </p>
                     <p> - Andrew </p>
                 </div>

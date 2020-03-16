@@ -19,24 +19,38 @@ class JobsMap extends React.Component {
 
         this.state = { 
             section: {
-                display: '',
+                hidden: '',
                 icon: 'left'   
-            }, 
-            map: null 
+            },
+            refresh: 'hidden',
+            map: null,
+            jobs: []
         };
         this.group = L.markerClusterGroup();
     }
 
     asideControl = (cb) => {
         this.setState(prevState => ({
-            section: prevState.section.display ? {
-                display: '',
+            section: prevState.section.hidden ? {
+                hidden: '',
                 icon: 'left'
             } : {
-                display: 'hidden',
+                hidden: 'hidden',
                 icon: 'right'
             }
-        }), typeof cb === 'function' ? cb : undefined);
+        }), () => {
+            if (typeof cb === 'function') cb();
+        });
+    }
+
+    resetControl = () => {
+        if (this.state.section.hidden) {
+            this.asideControl(() => {
+                this.centerMap(this.group.getBounds());
+            });
+        } else {
+            this.centerMap(this.group.getBounds());
+        }
     }
 
     onSidebarClick = (markerData) => {
@@ -44,7 +58,7 @@ class JobsMap extends React.Component {
             marker = markers.find((m) => m.options.id === markerData.id);
 
         if (marker) {
-            if (this.state.section.display) {
+            if (this.state.section.hidden) {
                 this.asideControl(() => {
                     this.state.map.invalidateSize();
                     this.centerAndOpenPopup(marker);
@@ -53,6 +67,23 @@ class JobsMap extends React.Component {
                 this.centerAndOpenPopup(marker);
             }
         }
+    }
+
+    onMarkerHover = (id) => {
+        this.setState((prevState) => {
+            const jobs = prevState.jobs.map((j) => ({
+                ...j,
+                selected: false
+            }));
+
+            if (id) {
+                jobs.find((j) => j.id === id).selected = true;   
+            }
+                
+            return {
+                jobs: jobs
+            };
+        });
     }
 
     centerAndOpenPopup(marker) {
@@ -95,17 +126,30 @@ class JobsMap extends React.Component {
     }
     
     componentDidMount() {       
+        const map = L.map('map', {
+            center: [0, 0],
+            zoom: 2,
+            maxZoom: 14
+        });
+
         this.setState({
-            map: L.map('map', {
-                center: [0, 0],
-                zoom: 2,
-                maxZoom: 14
-            })
+            map: map
         }, () => {
             this.group.addTo(this.state.map);
 
-            if (this.props.jobs.length) {
-                this.centerMap(this.group.getBounds());
+            map.on('moveend', () => {
+                const { x, y } = map.getSize();
+                if (x && y) {
+                    this.setState({ // only show markers that are within the current map bounds
+                        jobs: this.props.jobs.filter((j) => j.lat && map.getBounds().contains(L.latLng(j.lat, j.lng))),
+                        refresh: map.getBounds().contains(this.group.getBounds()) ? 'hidden' : ''
+                    });
+                    this.props.setStateBounds(map.getBounds());
+                }
+            });
+
+            if (this.props.bounds) {
+                this.centerMap(this.props.bounds);
             }
         });
     }
@@ -116,21 +160,22 @@ class JobsMap extends React.Component {
                 <main className="jb-main jb-fill jb-row">
                     <Message searching={this.props.searching} error={this.props.error} />
                     <div className="jb-controls">
-                        <Control icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} />
+                        <Control icon={`angle-double-${this.state.section.icon}`} control={this.asideControl} className="jb-hide-control" />
+                        <Control icon="refresh" control={this.resetControl} className={`jb-${this.state.refresh}`} />
                     </div>
-                    <section className={`jb-fill jb-column jb-${this.state.section.display}`}>
+                    <section className={`jb-fill jb-column jb-${this.state.section.hidden}`}>
                         <div className="jb-fill" id="map">
                         </div>
                         {this.state.map && 
                             <React.Fragment>
                                 <MapLayer map={this.state.map} />
                                 {this.props.jobs.map((m) => 
-                                    <MapMarker {...m} group={this.group} key={m.id} /> 
+                                    <MapMarker {...m} group={this.group} key={m.id} onHover={this.onMarkerHover} /> 
                                 )}
                             </React.Fragment>
                         }
                     </section>
-                    <Sidebar jobs={this.props.jobs} onClick={this.onSidebarClick} />
+                    <Sidebar jobs={this.state.jobs} onClick={this.onSidebarClick} />
                 </main>
             </React.Fragment>
         );
