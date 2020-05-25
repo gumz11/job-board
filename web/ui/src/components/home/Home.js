@@ -17,14 +17,12 @@ const Home = () => (
                         <h1>Job viewing</h1>
                         <h2>on a map.</h2>
                         <br />
-                        <h5>It's pretty cool</h5>
                     </div>
                     <div className="jb-right">
                         <i className="fa fa-map-o fa-5x"></i>
                     </div>
                 </div>
                 <div className="jb-row jb-top jb-next">
-                    <p> View jobs on a <a> map. </a> Oh yea. </p>
                 </div>
                 <Icon type="google">
                     The map tile layer and Geocoding from the Google Maps
